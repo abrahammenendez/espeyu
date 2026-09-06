@@ -1,0 +1,10 @@
+name: Main
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  verify:
+    name: Verify
+    uses: ./.github/workflows/verify.yaml

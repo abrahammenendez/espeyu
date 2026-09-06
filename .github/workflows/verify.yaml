@@ -1,0 +1,60 @@
+name: Verify
+on:
+  workflow_call:
+permissions:
+  contents: read
+jobs:
+  verify:
+    name: Lint, test, build
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      # Matches the daemon criteria in gradle/gradle-daemon-jvm.properties, so Gradle
+      # runs on this JDK instead of provisioning its own.
+      - name: Set up JDK
+        uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: '25'
+      - name: Set up the Android SDK
+        uses: android-actions/setup-android@v4
+        with:
+          packages: 'platforms;android-37.0 build-tools;36.0.0'
+      # Held at v5: from v6 the caching component is proprietary and carries its own
+      # terms of use, which an AGPL project distributed through F-Droid will not take on.
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v5
+      - name: Format
+        run: ./gradlew spotlessCheck
+      - name: Lint
+        run: ./gradlew lint
+      - name: Unit tests
+        run: ./gradlew test
+      - name: Build
+        run: ./gradlew assembleRelease
+      - name: Upload reports
+        if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: reports
+          path: |
+            app/build/reports/
+            app/build/outputs/roborazzi/
+            benchmark/build/reports/
+          retention-days: 7
+  licensing:
+    name: REUSE compliance
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - name: Check licence headers
+        uses: fsfe/reuse-action@v6

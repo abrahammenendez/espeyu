@@ -1,0 +1,17 @@
+version: 2
+updates:
+  - package-ecosystem: gradle
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      androidx:
+        patterns: ['androidx.*']
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    ignore:
+      # See the comment on the step in .github/workflows/verify.yaml.
+      - dependency-name: gradle/actions
+        update-types: [version-update:semver-major]

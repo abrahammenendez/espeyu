@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  SPDX-FileCopyrightText: 2026 Abraham Menéndez
+  SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+<resources>
+    <style name="Theme.Espeyu" parent="android:Theme.Material.NoActionBar">
+        <item name="android:windowBackground">@android:color/black</item>
+    </style>
+</resources>

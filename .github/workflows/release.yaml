@@ -1,0 +1,42 @@
+name: Release
+on:
+  push:
+    tags: ['v*']
+permissions:
+  contents: write
+jobs:
+  verify:
+    name: Verify
+    uses: ./.github/workflows/verify.yaml
+  release:
+    name: Publish the GitHub release
+    needs: verify
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      # F-Droid's updater keys off the tag, so a tag that disagrees with the version
+      # it builds, or arrives without its changelog, publishes the wrong release.
+      - name: Check the tag against the app version
+        run: |
+          name=$(sed -n 's/.*versionName = "\(.*\)"/\1/p' app/build.gradle.kts)
+          code=$(sed -n 's/.*versionCode = \([0-9]*\)/\1/p' app/build.gradle.kts)
+          changelog="fastlane/metadata/android/en-US/changelogs/$code.txt"
+          if [ "v$name" != "$GITHUB_REF_NAME" ]; then
+            echo "Tag $GITHUB_REF_NAME does not match versionName $name" >&2
+            exit 1
+          fi
+          if [ ! -f "$changelog" ]; then
+            echo "versionCode $code has no $changelog" >&2
+            exit 1
+          fi
+      # No APK is attached. F-Droid builds and signs from this tag, which is the
+      # only distribution channel and the reason no signing key lives here.
+      - name: Create the release
+        run: gh release create "$GITHUB_REF_NAME" --generate-notes --verify-tag
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}

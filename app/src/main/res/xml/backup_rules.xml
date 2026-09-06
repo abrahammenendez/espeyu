@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  SPDX-FileCopyrightText: 2026 Abraham Menéndez
+  SPDX-License-Identifier: AGPL-3.0-or-later
+
+  Pre-Android 12 counterpart of data_extraction_rules.xml.
+-->
+<full-backup-content>
+    <exclude domain="root" path="." />
+</full-backup-content>

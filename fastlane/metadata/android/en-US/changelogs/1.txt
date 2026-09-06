@@ -1,0 +1,4 @@
+First release.
+
+A full-screen mirror with a true view by default, freeze, zoom, screen
+brightness and an on-screen ring light.
