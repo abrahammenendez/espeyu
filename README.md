@@ -194,5 +194,7 @@ F-Droid reads the listing text and images from `fastlane/metadata/`. See
 
 ## Licence
 
-AGPL-3.0-or-later, and [REUSE](https://reuse.software) compliant. The icons
-under `app/src/main/res/drawable/` are Material Symbols, Apache-2.0.
+AGPL-3.0-or-later, and [REUSE](https://reuse.software) compliant. The control
+icons under `app/src/main/res/drawable/` are Material Symbols, Apache-2.0. The
+mirror glyph in `ic_launcher_foreground.xml` and `ic_mark.xml` is Lucide's
+[`mirror-round`](https://lucide.dev/icons/mirror-round), ISC.
