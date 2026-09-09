@@ -3,37 +3,26 @@
   SPDX-FileCopyrightText: 2026 Lucide Icons and Contributors
   SPDX-License-Identifier: ISC
 -->
-<!-- The launcher glyph, pale strokes in a dark casing, cropped to that: a mark this small needs an
-     edge to hold against a live preview. -->
+<!-- The launcher glyph cropped to its ink, which is what a mark this small needs. -->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:width="21dp"
-    android:height="25dp"
-    android:viewportWidth="60"
-    android:viewportHeight="72">
+    android:width="19dp"
+    android:height="23dp"
+    android:viewportWidth="54"
+    android:viewportHeight="66">
     <group
         android:scaleX="3"
         android:scaleY="3"
-        android:translateX="-6">
+        android:translateX="-9"
+        android:translateY="-3">
         <path
             android:pathData="M4,10 a8,8 0 1,0 16,0 a8,8 0 1,0 -16,0"
-            android:strokeColor="@color/ic_launcher_background"
-            android:strokeLineCap="round"
-            android:strokeLineJoin="round"
-            android:strokeWidth="4" />
-        <path
-            android:pathData="M12,18 V22 M7,22 H17 M10,6.6 L8.6,8 M15,7.5 L9.5,13"
-            android:strokeColor="@color/ic_launcher_background"
-            android:strokeLineCap="round"
-            android:strokeWidth="4" />
-        <path
-            android:pathData="M4,10 a8,8 0 1,0 16,0 a8,8 0 1,0 -16,0"
-            android:strokeColor="@color/ic_launcher_foreground"
+            android:strokeColor="@android:color/white"
             android:strokeLineCap="round"
             android:strokeLineJoin="round"
             android:strokeWidth="2" />
         <path
             android:pathData="M12,18 V22 M7,22 H17 M10,6.6 L8.6,8 M15,7.5 L9.5,13"
-            android:strokeColor="@color/ic_launcher_foreground"
+            android:strokeColor="@android:color/white"
             android:strokeLineCap="round"
             android:strokeWidth="2" />
     </group>

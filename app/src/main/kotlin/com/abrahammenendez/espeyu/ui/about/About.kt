@@ -4,7 +4,9 @@
 package com.abrahammenendez.espeyu.ui.about
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -16,7 +18,6 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -32,8 +33,13 @@ import com.abrahammenendez.espeyu.R
 
 private const val SOURCE_URL = "https://github.com/abrahammenendez/espeyu"
 
-/** Low enough to leave the reflection alone, high enough to survive a screenshot. */
-private const val MARK_ALPHA = 0.55f
+/** Low enough to leave the reflection alone, high enough to spot in a screenshot. */
+private const val MARK_ALPHA = 0.26f
+
+/** Carries the pale glyph on a bright frame, where it would otherwise wash out. */
+private const val MARK_SHADOW_ALPHA = 0.16f
+
+private val MarkShadow = 1.dp
 
 private val MarkPadding = 12.dp
 
@@ -42,19 +48,24 @@ private val BlockSpacing = 16.dp
 
 private val LineSpacing = 8.dp
 
-/**
- * The app's own glyph and the way into the about dialog. `ic_mark` carries the dark casing that
- * keeps it legible over a live preview of any colour; this only places it and fades it back.
- */
+/** The app's own glyph, and the way into the about dialog. */
 @Composable
 fun AboutMark(onClick: () -> Unit, modifier: Modifier = Modifier) {
+    val mark = painterResource(R.drawable.ic_mark)
     IconButton(onClick = onClick, modifier = modifier.padding(MarkPadding)) {
-        Icon(
-            painter = painterResource(R.drawable.ic_mark),
-            contentDescription = stringResource(R.string.action_about),
-            modifier = Modifier.alpha(MARK_ALPHA),
-            tint = Color.Unspecified,
-        )
+        Box {
+            Icon(
+                painter = mark,
+                contentDescription = null,
+                modifier = Modifier.offset(MarkShadow, MarkShadow),
+                tint = Color.Black.copy(alpha = MARK_SHADOW_ALPHA),
+            )
+            Icon(
+                painter = mark,
+                contentDescription = stringResource(R.string.action_about),
+                tint = Color.White.copy(alpha = MARK_ALPHA),
+            )
+        }
     }
 }
 
