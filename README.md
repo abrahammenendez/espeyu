@@ -78,6 +78,11 @@ bar takes its width from the button row through `IntrinsicSize.Min`, so a
 slider opening above the buttons is exactly as wide as they are and the bar
 never carries dead space.
 
+Each button plays a haptic when it acts, since your eyes are on your own face
+and not on the bar. The toggles use `ToggleOn` and `ToggleOff`, the lens switch
+uses `SegmentTick`, so the type matches the gesture rather than being one buzz
+for everything.
+
 ### Freeze
 
 Freezing reads the displayed frame back with `PreviewView.getBitmap()`, which

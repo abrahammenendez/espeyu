@@ -3,6 +3,10 @@
 
 package com.abrahammenendez.espeyu.ui.mirror
 
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.ui.hapticfeedback.HapticFeedback
+import androidx.compose.ui.hapticfeedback.HapticFeedbackType
+import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertIsEnabled
 import androidx.compose.ui.test.assertIsNotEnabled
@@ -12,6 +16,7 @@ import androidx.compose.ui.test.performClick
 import com.abrahammenendez.espeyu.data.MirrorSettings
 import com.abrahammenendez.espeyu.data.RingLight
 import com.abrahammenendez.espeyu.data.ScreenBrightness
+import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Rule
 import org.junit.Test
@@ -87,24 +92,65 @@ class MirrorControlsTest {
         assertTrue(toggled)
     }
 
+    @Test
+    fun `turning a control on plays the on feedback`() {
+        val haptics = RecordingHapticFeedback()
+        show(MirrorUiState(), haptics = haptics)
+
+        compose.onNodeWithContentDescription("Freeze the frame").performClick()
+
+        assertEquals(listOf(HapticFeedbackType.ToggleOn), haptics.events)
+    }
+
+    @Test
+    fun `turning a control off plays the off feedback`() {
+        val haptics = RecordingHapticFeedback()
+        show(MirrorUiState(frozenFrame = FakeFrame), canFreeze = false, haptics = haptics)
+
+        compose.onNodeWithContentDescription("Unfreeze the frame").performClick()
+
+        assertEquals(listOf(HapticFeedbackType.ToggleOff), haptics.events)
+    }
+
+    @Test
+    fun `switching lens plays the discrete tick`() {
+        val haptics = RecordingHapticFeedback()
+        show(MirrorUiState(), haptics = haptics)
+
+        compose.onNodeWithContentDescription("Switch camera").performClick()
+
+        assertEquals(listOf(HapticFeedbackType.SegmentTick), haptics.events)
+    }
+
     private fun show(
         state: MirrorUiState,
         canFreeze: Boolean = true,
         onToggleView: () -> Unit = {},
+        haptics: HapticFeedback = RecordingHapticFeedback(),
     ) {
         compose.setContent {
-            MirrorControls(
-                state = state,
-                canFreeze = canFreeze,
-                onToggleView = onToggleView,
-                onSwitchLens = {},
-                onToggleFreeze = {},
-                onToggleBrightness = {},
-                onBrightnessChange = {},
-                onToggleRingLight = {},
-                onWarmthChange = {},
-                onTouchActiveChange = {},
-            )
+            CompositionLocalProvider(LocalHapticFeedback provides haptics) {
+                MirrorControls(
+                    state = state,
+                    canFreeze = canFreeze,
+                    onToggleView = onToggleView,
+                    onSwitchLens = {},
+                    onToggleFreeze = {},
+                    onToggleBrightness = {},
+                    onBrightnessChange = {},
+                    onToggleRingLight = {},
+                    onWarmthChange = {},
+                    onTouchActiveChange = {},
+                )
+            }
         }
+    }
+}
+
+private class RecordingHapticFeedback : HapticFeedback {
+    val events = mutableListOf<HapticFeedbackType>()
+
+    override fun performHapticFeedback(hapticFeedbackType: HapticFeedbackType) {
+        events += hapticFeedbackType
     }
 }

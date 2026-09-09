@@ -25,8 +25,10 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.input.pointer.PointerEventPass
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
@@ -38,8 +40,8 @@ private val ControlSpacing = 4.dp
 
 private val ControlPadding = 8.dp
 
-/** Brings the track's ends level with the button containers either side of the row below. */
-private val SliderInset = 2.dp
+/** Insets the track so a thumb near maximum stays clear of the rounded corner. */
+private val SliderInset = 8.dp
 
 private val SliderIconSize = 20.dp
 
@@ -115,7 +117,7 @@ fun MirrorControls(
                 ToggleControl(
                     checked = state.isFrozen,
                     onCheckedChange = { onToggleFreeze() },
-                    icon = if (state.isFrozen) R.drawable.ic_unfreeze else R.drawable.ic_freeze,
+                    icon = R.drawable.ic_freeze,
                     label =
                         stringResource(
                             if (state.isFrozen) R.string.action_unfreeze else R.string.action_freeze
@@ -156,9 +158,15 @@ private fun ToggleControl(
     label: String,
     enabled: Boolean = true,
 ) {
+    val haptics = LocalHapticFeedback.current
     FilledIconToggleButton(
         checked = checked,
-        onCheckedChange = onCheckedChange,
+        onCheckedChange = {
+            haptics.performHapticFeedback(
+                if (it) HapticFeedbackType.ToggleOn else HapticFeedbackType.ToggleOff
+            )
+            onCheckedChange(it)
+        },
         enabled = enabled,
     ) {
         Icon(painter = painterResource(icon), contentDescription = label)
@@ -168,9 +176,13 @@ private fun ToggleControl(
 /** Borrows the unchecked [ToggleControl] colours, for the one button with no state to show. */
 @Composable
 private fun ActionControl(onClick: () -> Unit, @DrawableRes icon: Int, label: String) {
+    val haptics = LocalHapticFeedback.current
     val unchecked = IconButtonDefaults.filledIconToggleButtonColors()
     FilledIconButton(
-        onClick = onClick,
+        onClick = {
+            haptics.performHapticFeedback(HapticFeedbackType.SegmentTick)
+            onClick()
+        },
         colors =
             IconButtonDefaults.filledIconButtonColors(
                 containerColor = unchecked.containerColor,
