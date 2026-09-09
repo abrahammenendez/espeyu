@@ -4,5 +4,10 @@
   SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 <resources>
-    <color name="ic_launcher_background">#1A1613</color>
+    <!--
+      Authored in OKLCH, converted to sRGB hex because Android resources take nothing else:
+      background oklch(0.2645 0.004 100), foreground oklch(0.982 0.005 100).
+    -->
+    <color name="ic_launcher_background">#252523</color>
+    <color name="ic_launcher_foreground">#FAF9F5</color>
 </resources>

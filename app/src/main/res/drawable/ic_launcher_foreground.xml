@@ -15,13 +15,13 @@
         android:translateY="24">
         <path
             android:pathData="M4,10 a8,8 0 1,0 16,0 a8,8 0 1,0 -16,0"
-            android:strokeColor="#F2EBE1"
+            android:strokeColor="@color/ic_launcher_foreground"
             android:strokeLineCap="round"
             android:strokeLineJoin="round"
             android:strokeWidth="2" />
         <path
             android:pathData="M12,18 V22 M7,22 H17 M10,6.6 L8.6,8 M15,7.5 L9.5,13"
-            android:strokeColor="#F2EBE1"
+            android:strokeColor="@color/ic_launcher_foreground"
             android:strokeLineCap="round"
             android:strokeWidth="2" />
     </group>
