@@ -124,12 +124,12 @@ the one on screen.
 
 ### About
 
-The mark in the corner opens the about dialog. It is the launcher glyph cropped
-to its ink, because an adaptive icon carries 36dp of padding on each side that a
-mark this small cannot afford. It draws twice, a dark copy a pixel below a pale
-one, since the preview behind it can be any colour: `ScreenshotTest` captures it
-over white and black, which is the only way to catch a mark that has gone
-invisible. It sits inside the ring light's window rather than over the lamp.
+The mark in the corner opens the about dialog. It is the launcher glyph with the
+adaptive-icon padding stripped, which a mark this small cannot spare, and its
+pale strokes sit in a dark casing so they hold an edge whatever the preview does
+behind them. `ScreenshotTest` captures it over white and black, the only way to
+catch a mark that has gone invisible. It sits inside the ring light's window
+rather than over the lamp.
 
 ## Privacy
 
