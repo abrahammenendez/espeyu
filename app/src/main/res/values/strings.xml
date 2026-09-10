@@ -21,13 +21,15 @@
     <string name="slider_brightness">Screen brightness</string>
     <string name="slider_warmth">Ring light warmth</string>
 
-    <string name="about_version">Version %1$s</string>
-    <string name="about_summary">A mirror that shows you the true view, the way other people see you.</string>
-    <string name="about_credits">By Abraham Menéndez. AGPL-3.0-or-later, with AndroidX, Kotlin and Material Symbols under Apache-2.0.</string>
+    <string name="about_summary">A modern, privacy-first, feature-rich mirror for your phone.</string>
+    <string name="about_version">Version: %1$s</string>
+    <string name="about_author">Author: Abraham Menéndez</string>
+    <string name="about_license">License: AGPL-3.0-or-later, with AndroidX, Kotlin and Material Symbols under Apache-2.0.</string>
+    <string name="about_source">Source:</string>
     <string name="about_close">Close</string>
 
-    <string name="permission_rationale">Espeyu needs your camera. Nothing is recorded, saved or sent anywhere.</string>
+    <string name="permission_rationale">Espeyu needs access to your camera. Nothing is recorded, saved or sent anywhere.</string>
     <string name="permission_grant">Allow camera</string>
-    <string name="permission_denied">Espeyu cannot work without your camera. You can grant it in the system settings.</string>
+    <string name="permission_denied">Espeyu cannot work without camera access. You can allow it in the system settings.</string>
     <string name="permission_open_settings">Open settings</string>
 </resources>

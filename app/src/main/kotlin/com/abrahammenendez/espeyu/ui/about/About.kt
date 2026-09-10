@@ -33,6 +33,8 @@ import com.abrahammenendez.espeyu.R
 
 private const val SOURCE_URL = "https://github.com/abrahammenendez/espeyu"
 
+private const val PERSONAL_WEBSITE_URL = "https://abrahammenendez.com"
+
 /** Low enough to leave the reflection alone, high enough to spot in a screenshot. */
 private const val MARK_ALPHA = 0.26f
 
@@ -43,10 +45,7 @@ private val MarkShadow = 1.dp
 
 private val MarkPadding = 12.dp
 
-/** Attribution and its link are one thought, so they sit closer than the blocks around them. */
 private val BlockSpacing = 16.dp
-
-private val LineSpacing = 8.dp
 
 /** The app's own glyph, and the way into the about dialog. */
 @Composable
@@ -84,27 +83,40 @@ fun AboutDialog(onDismiss: () -> Unit) {
                 modifier = Modifier.verticalScroll(rememberScrollState()),
                 verticalArrangement = Arrangement.spacedBy(BlockSpacing),
             ) {
-                Text(stringResource(R.string.about_version, BuildConfig.VERSION_NAME))
                 Text(stringResource(R.string.about_summary))
-                Column(verticalArrangement = Arrangement.spacedBy(LineSpacing)) {
-                    Text(stringResource(R.string.about_credits))
-                    Text(sourceLink())
-                }
+                Text(stringResource(R.string.about_version, BuildConfig.VERSION_NAME))
+                Text(authorLine())
+                Text(sourceLine())
+                Text(stringResource(R.string.about_license))
             }
         },
     )
 }
 
+/** Label and link render as one paragraph so the URL follows the name and wraps only if it must. */
 @Composable
-private fun sourceLink() = buildAnnotatedString {
-    val styles =
-        TextLinkStyles(
-            SpanStyle(
-                color = MaterialTheme.colorScheme.primary,
-                textDecoration = TextDecoration.Underline,
-            )
-        )
-    withLink(LinkAnnotation.Url(SOURCE_URL, styles)) {
+private fun authorLine() = buildAnnotatedString {
+    append(stringResource(R.string.about_author))
+    append(" ")
+    withLink(LinkAnnotation.Url(PERSONAL_WEBSITE_URL, linkStyles())) {
+        append(PERSONAL_WEBSITE_URL.removePrefix("https://"))
+    }
+}
+
+@Composable
+private fun sourceLine() = buildAnnotatedString {
+    append(stringResource(R.string.about_source))
+    append(" ")
+    withLink(LinkAnnotation.Url(SOURCE_URL, linkStyles())) {
         append(SOURCE_URL.removePrefix("https://"))
     }
 }
+
+@Composable
+private fun linkStyles() =
+    TextLinkStyles(
+        SpanStyle(
+            color = MaterialTheme.colorScheme.primary,
+            textDecoration = TextDecoration.Underline,
+        )
+    )

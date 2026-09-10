@@ -1,6 +1,6 @@
 # espeyu
 
-:bulb: A fast, modern, privacy-first, feature-rich mirror for your phone.
+:bulb: A modern, privacy-first, feature-rich mirror for your phone.
 
 [![Main](https://github.com/abrahammenendez/espeyu/actions/workflows/main.yaml/badge.svg)](https://github.com/abrahammenendez/espeyu/actions/workflows/main.yaml)
 [![REUSE status](https://api.reuse.software/badge/github.com/abrahammenendez/espeyu)](https://api.reuse.software/info/github.com/abrahammenendez/espeyu)

@@ -35,7 +35,9 @@ class AboutTest {
         compose.setContent { EspeyuTheme { AboutDialog(onDismiss = {}) } }
 
         compose.onNodeWithText("AGPL-3.0-or-later", substring = true).assertIsDisplayed()
-        compose.onNodeWithText("github.com/abrahammenendez/espeyu").assertIsDisplayed()
+        compose
+            .onNodeWithText("github.com/abrahammenendez/espeyu", substring = true)
+            .assertIsDisplayed()
     }
 
     @Test
