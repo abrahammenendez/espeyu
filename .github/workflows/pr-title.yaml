@@ -1,0 +1,28 @@
+name: Check PR title
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, edited, synchronize, reopened]
+permissions:
+  contents: read
+jobs:
+  title:
+    name: Title
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: lts/*
+      - name: Install commitlint
+        run: npm install --no-save @commitlint/cli@21 @commitlint/config-conventional@21
+      # Squash merging makes the title, not the branch's commits, the commit on main.
+      # It arrives through the environment so a crafted title cannot run as shell.
+      - name: Lint the title
+        run: printf '%s\n' "$TITLE" | npx commitlint
+        env:
+          TITLE: ${{ github.event.pull_request.title }}
