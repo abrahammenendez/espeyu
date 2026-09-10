@@ -23,5 +23,5 @@ fun EspeyuTheme(content: @Composable () -> Unit) {
         } else {
             darkColorScheme()
         }
-    MaterialTheme(colorScheme = colorScheme, content = content)
+    MaterialTheme(colorScheme = colorScheme, typography = EspeyuTypography, content = content)
 }
