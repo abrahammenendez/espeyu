@@ -31,7 +31,7 @@ the build to JDK 25, which Gradle provisions itself when the machine has none.
 ```
 
 Run those before calling a change done. CI runs the same set, with
-`spotlessCheck` in place of `spotlessApply`, plus `assembleRelease` and a REUSE
+`spotlessCheck` in place of `spotlessApply`, plus `bundleRelease` and a REUSE
 licence check.
 
 The SDK components are pinned in [`app/build.gradle.kts`](app/build.gradle.kts)

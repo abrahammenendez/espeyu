@@ -13,11 +13,11 @@ the architecture and the reasoning behind it; do not duplicate that here.
 ./gradlew test          # every test, all on the JVM
 ./gradlew recordRoborazziDebug  # rewrite the golden screenshots
 ./gradlew assembleDebug
-./gradlew assembleRelease   # R8 plus resource shrinking, also runs lintVital
+./gradlew bundleRelease     # the bundle Play receives: R8, resource shrinking, lintVital
 ```
 
 Run `spotlessApply`, `lint` and `test` before calling a change done. CI runs
-`spotlessCheck`, `lint`, `test`, `assembleRelease`, and `reuse lint` in a
+`spotlessCheck`, `lint`, `test`, `bundleRelease`, and `reuse lint` in a
 separate job.
 
 ## Gotchas

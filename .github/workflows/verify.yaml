@@ -37,7 +37,7 @@ jobs:
       - name: Unit tests
         run: ./gradlew test
       - name: Build
-        run: ./gradlew assembleRelease
+        run: ./gradlew bundleRelease
       - name: Upload reports
         if: failure()
         uses: actions/upload-artifact@v7
