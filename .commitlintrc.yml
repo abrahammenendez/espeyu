@@ -4,3 +4,5 @@ rules:
   type-enum: [2, 'always', [feat, fix, revert, chore]]
   scope-case: [2, 'always', 'lower-case']
   subject-case: [2, 'always', 'lower-case']
+  # Dependabot writes body lines past 100 characters, and a URL cannot be wrapped.
+  body-max-line-length: [0]

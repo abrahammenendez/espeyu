@@ -4,6 +4,9 @@ updates:
     directory: /
     schedule:
       interval: weekly
+    commit-message:
+      prefix: chore
+      include: scope
     groups:
       androidx:
         patterns: ['androidx.*']
@@ -11,6 +14,9 @@ updates:
     directory: /
     schedule:
       interval: weekly
+    commit-message:
+      prefix: chore
+      include: scope
     ignore:
       # See the comment on the step in .github/workflows/verify.yaml.
       - dependency-name: gradle/actions
