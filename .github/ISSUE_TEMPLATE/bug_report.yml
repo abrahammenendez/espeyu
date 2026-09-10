@@ -1,0 +1,27 @@
+name: Bug report
+description: Something in Espeyu does not work the way it should.
+labels: [bug]
+body:
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened
+      description: What you did, what you saw, and what you expected to see instead.
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Espeyu version
+      description: >-
+        Tap the mark in the top corner of the mirror to open the about dialog,
+        which shows it. Android's app info page for Espeyu shows it too.
+    validations:
+      required: true
+  - type: input
+    id: phone
+    attributes:
+      label: Phone and Android version
+      placeholder: Pixel 8, Android 16
+    validations:
+      required: true

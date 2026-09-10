@@ -93,10 +93,9 @@ separate job.
   Apache-2.0 header.
 - Every file carries SPDX headers, or is annotated in `REUSE.toml`. `reuse lint`
   has to pass.
-- The non-goals are binding: no photo capture, no video, no saving, no sharing,
-  no filters, no accounts, no ads, no analytics. A feature that would need the
-  `INTERNET` permission is a no.
+- The non-goals in @../CONTRIBUTING.md are binding.
 - `main` takes pull requests only. Branch, open a PR, let CI go green, merge.
+- New code follows the conventions and style of the code around it.
 
 ## Writing style
 
@@ -116,9 +115,6 @@ defect. These rules apply to code, comments, tests, docs and commit messages.
 
 ## Commits
 
-Conventional Commits, enforced by commitlint in CI.
-
-- The type must be `feat`, `fix`, `revert` or `chore`. **`docs`, `refactor`,
-  `test`, `style`, `perf` and `ci` are rejected**, so use `chore` for those.
-- Lowercase type, scope and subject. No trailing period.
-- New code should try follow same conventions and style of existing code.
+Pull requests are squash merged, so the title is the commit that lands on
+`main`. CI checks the title against `.commitlintrc.yml`, not the commits on the
+branch, and CONTRIBUTING.md states the rules.
