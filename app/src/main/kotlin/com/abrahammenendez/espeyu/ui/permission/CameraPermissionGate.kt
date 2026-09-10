@@ -15,8 +15,10 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawingPadding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material3.Button
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -29,8 +31,10 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
@@ -39,6 +43,9 @@ import com.abrahammenendez.espeyu.R
 
 /** Keeps the message to a readable measure once the screen is wider than a portrait phone. */
 private val MessageMaxWidth = 360.dp
+
+/** The mark stands in for the wordmark here, sized to read as the heading. */
+private val MarkSize = DpSize(40.dp, 48.dp)
 
 /**
  * One quiet screen, then the mirror forever. A denial leads to the system settings rather than to a
@@ -93,9 +100,10 @@ private fun PermissionPrompt(
             verticalArrangement = Arrangement.spacedBy(24.dp, Alignment.CenterVertically),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            Text(
-                text = stringResource(R.string.app_name),
-                style = MaterialTheme.typography.displaySmall,
+            Icon(
+                painter = painterResource(R.drawable.ic_mark),
+                contentDescription = stringResource(R.string.app_name),
+                modifier = Modifier.size(MarkSize),
             )
             Text(
                 text = message,
