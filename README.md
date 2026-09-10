@@ -144,6 +144,8 @@ manifest removes it.
 Nothing else is written to disk. There is no analytics, no crash reporting, no
 Play Services and no network code, and without `INTERNET` there could not be.
 
+The privacy policy itself is [`PRIVACY.md`](PRIVACY.md).
+
 ## Testing
 
 Everything runs on the JVM. Compose UI tests and anything needing a `Context`
