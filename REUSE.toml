@@ -9,6 +9,7 @@ path = [
     ".github/**",
     ".gitignore",
     "LICENSE",
+    "PRIVACY.md",
     "README.md",
     "app/src/test/screenshots/**",
     "docs/**",
