@@ -1,0 +1,22 @@
+name: Feature request
+description: An idea for something Espeyu could do.
+labels: [enhancement]
+body:
+  - type: checkboxes
+    id: non-goals
+    attributes:
+      label: Non-goals
+      description: >-
+        Espeyu is deliberately small, and ideas that need any of its
+        [non-goals](https://github.com/abrahammenendez/espeyu/blob/main/CONTRIBUTING.md#non-goals)
+        are closed.
+      options:
+        - label: This idea needs none of them.
+          required: true
+  - type: textarea
+    id: idea
+    attributes:
+      label: The idea
+      description: What you want to do with the mirror, and what gets in the way today.
+    validations:
+      required: true
