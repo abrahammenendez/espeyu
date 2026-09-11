@@ -24,8 +24,9 @@
     <string name="about_summary">A modern, privacy-first, fast mirror for your phone. Free, open-source, no ads.</string>
     <string name="about_version">Version: %1$s</string>
     <string name="about_author">Author: Abraham Menéndez</string>
-    <string name="about_license">License: AGPL-3.0-or-later, with AndroidX, Kotlin and Material Symbols under Apache-2.0, and Inter and Buenard under OFL-1.1.</string>
+    <string name="about_license">Licenses: AGPL-3.0-or-later, with AndroidX, Kotlin and Material Symbols under Apache-2.0, and Inter and Buenard under OFL-1.1.</string>
     <string name="about_source">Source/Issues:</string>
+    <string name="about_privacy_policy">Privacy policy:</string>
     <string name="about_close">Close</string>
 
     <string name="permission_rationale">Espeyu needs access to your camera. Nothing is recorded, saved or sent anywhere.</string>
