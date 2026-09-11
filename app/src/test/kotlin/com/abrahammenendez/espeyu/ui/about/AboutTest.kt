@@ -31,12 +31,23 @@ class AboutTest {
     }
 
     @Test
-    fun `the dialog credits the licence and the source`() {
+    fun `the dialog credits the licences and links the source`() {
         compose.setContent { EspeyuTheme { AboutDialog(onDismiss = {}) } }
 
         compose.onNodeWithText("AGPL-3.0-or-later", substring = true).assertIsDisplayed()
         compose
-            .onNodeWithText("github.com/abrahammenendez/espeyu", substring = true)
+            .onNodeWithText("Source/Issues: github.com/abrahammenendez/espeyu")
+            .assertIsDisplayed()
+    }
+
+    @Test
+    fun `the dialog links the privacy policy`() {
+        compose.setContent { EspeyuTheme { AboutDialog(onDismiss = {}) } }
+
+        compose
+            .onNodeWithText(
+                "Privacy policy: github.com/abrahammenendez/espeyu/blob/main/PRIVACY.md"
+            )
             .assertIsDisplayed()
     }
 

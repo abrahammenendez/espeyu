@@ -33,6 +33,9 @@ import com.abrahammenendez.espeyu.R
 
 private const val SOURCE_URL = "https://github.com/abrahammenendez/espeyu"
 
+private const val PRIVACY_POLICY_URL =
+    "https://github.com/abrahammenendez/espeyu/blob/main/PRIVACY.md"
+
 private const val PERSONAL_WEBSITE_URL = "https://abrahammenendez.com"
 
 /** Low enough to leave the reflection alone, high enough to spot in a screenshot. */
@@ -87,6 +90,7 @@ fun AboutDialog(onDismiss: () -> Unit) {
                 Text(stringResource(R.string.about_version, BuildConfig.VERSION_NAME))
                 Text(authorLine())
                 Text(sourceLine())
+                Text(privacyPolicyLine())
                 Text(stringResource(R.string.about_license))
             }
         },
@@ -109,6 +113,15 @@ private fun sourceLine() = buildAnnotatedString {
     append(" ")
     withLink(LinkAnnotation.Url(SOURCE_URL, linkStyles())) {
         append(SOURCE_URL.removePrefix("https://"))
+    }
+}
+
+@Composable
+private fun privacyPolicyLine() = buildAnnotatedString {
+    append(stringResource(R.string.about_privacy_policy))
+    append(" ")
+    withLink(LinkAnnotation.Url(PRIVACY_POLICY_URL, linkStyles())) {
+        append(PRIVACY_POLICY_URL.removePrefix("https://"))
     }
 }
 
