@@ -19,5 +19,6 @@ Espeyu only asks for camera access. It has no way to connect to the
 internet, so nothing you do in it ever leaves your phone.
 
 No photos, no video, no accounts, no ads, no in-app purchases, no
-analytics, no crash reports. It's free and open source:
-https://github.com/abrahammenendez/espeyu
+analytics.
+
+Free and open source: https://github.com/abrahammenendez/espeyu
