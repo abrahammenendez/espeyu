@@ -31,7 +31,7 @@ app deletes them.
 
 ## Children
 
-Espeyu is not directed at children.
+Espeyu is not directed at children under 13.
 
 ## Changes
 
