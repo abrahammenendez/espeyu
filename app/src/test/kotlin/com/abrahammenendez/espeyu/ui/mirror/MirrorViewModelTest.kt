@@ -6,6 +6,7 @@ package com.abrahammenendez.espeyu.ui.mirror
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.PreferenceDataStoreFactory
 import androidx.datastore.preferences.core.Preferences
+import androidx.lifecycle.ViewModelStore
 import com.abrahammenendez.espeyu.data.Lens
 import com.abrahammenendez.espeyu.data.MirrorSettings
 import com.abrahammenendez.espeyu.data.SettingsRepository
@@ -44,10 +45,17 @@ class MirrorViewModelTest {
 
     private val storeScope = CoroutineScope(Dispatchers.IO + SupervisorJob())
 
+    // Every MirrorViewModel the test creates is tracked here so tearDown can clear it. Without
+    // that, viewModelScope's persistence collector outlives the test and can resume on Main after
+    // resetMain(), which fails because no real Main dispatcher exists in a plain JVM test.
+    private val viewModelStore = ViewModelStore()
+    private var nextViewModelKey = 0
+
     @Before fun setUp() = Dispatchers.setMain(Dispatchers.Unconfined)
 
     @After
     fun tearDown() {
+        viewModelStore.clear()
         storeScope.cancel()
         Dispatchers.resetMain()
     }
@@ -62,7 +70,7 @@ class MirrorViewModelTest {
         val store = store()
         SettingsRepository(store).save(MirrorSettings(lens = Lens.BACK))
 
-        val viewModel = MirrorViewModel(SettingsRepository(store))
+        val viewModel = track(MirrorViewModel(SettingsRepository(store)))
 
         assertEquals(
             Lens.BACK,
@@ -73,7 +81,7 @@ class MirrorViewModelTest {
     @Test
     fun `changing a setting reaches the store`() = await {
         val store = store()
-        val viewModel = MirrorViewModel(SettingsRepository(store))
+        val viewModel = track(MirrorViewModel(SettingsRepository(store)))
 
         viewModel.toggleView()
 
@@ -85,7 +93,7 @@ class MirrorViewModelTest {
         val store = store()
         SettingsRepository(store).save(MirrorSettings(isTrueView = true))
 
-        val viewModel = MirrorViewModel(SettingsRepository(store))
+        val viewModel = track(MirrorViewModel(SettingsRepository(store)))
         viewModel.toggleView()
 
         assertFalse(viewModel.uiState.value.settings.isTrueView)
@@ -161,7 +169,12 @@ class MirrorViewModelTest {
         withTimeout(AwaitTimeout) { body() }
     }
 
-    private fun viewModel() = MirrorViewModel(SettingsRepository(store()))
+    private fun track(viewModel: MirrorViewModel): MirrorViewModel {
+        viewModelStore.put((nextViewModelKey++).toString(), viewModel)
+        return viewModel
+    }
+
+    private fun viewModel() = track(MirrorViewModel(SettingsRepository(store())))
 
     private fun store(): DataStore<Preferences> =
         PreferenceDataStoreFactory.create(scope = storeScope) {
