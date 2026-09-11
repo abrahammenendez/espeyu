@@ -1,6 +1,6 @@
 # espeyu
 
-:bulb: A modern, privacy-first, feature-rich mirror for your phone.
+:bulb: A privacy-first, modern, fast mirror for your phone. Free, open-source, no ads.
 
 [![Main](https://github.com/abrahammenendez/espeyu/actions/workflows/main.yaml/badge.svg)](https://github.com/abrahammenendez/espeyu/actions/workflows/main.yaml)
 [![REUSE status](https://api.reuse.software/badge/github.com/abrahammenendez/espeyu)](https://api.reuse.software/info/github.com/abrahammenendez/espeyu)
@@ -14,8 +14,8 @@ yourself live the way other people see you. Espeyu shows you the true view by
 default and keeps the mirrored one a tap away.
 
 Espeyu takes no photos, records no video, writes nothing to disk beyond your own
-preferences, and has no `INTERNET` permission. It is distributed through
-F-Droid only.
+preferences, and has no `INTERNET` permission. It's free, open source and
+distributed through Google Play, with no ads and no in-app purchases.
 
 ## Getting started
 

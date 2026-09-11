@@ -10,8 +10,10 @@ is made.
 
 - Photo capture, video, saving or sharing.
 - Filters.
-- Accounts, ads or analytics.
+- Accounts, ads, in-app purchases or analytics.
 - Anything that needs the `INTERNET` permission.
+- Dependencies or features that make the app slower or bigger, without
+  removing something in return.
 
 ## Issues
 
