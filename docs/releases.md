@@ -132,7 +132,10 @@ may do to the app comes from the Play Console invite below.
 
 Users and permissions, Invite new user, the service account's email address.
 For Espeyu, grant it "Release apps to testing tracks", "Release to production,
-exclude devices, and use Play App Signing" and "Manage store presence".
+exclude devices, and use Play App Signing" and "Manage store presence". The
+permissions dialog has its own Apply button and the page below it a second one,
+and applying without saving leaves the account able to stage an upload but not to
+commit it, which Play reports as a bare 403 on the edit.
 
 ### GitHub
 
