@@ -96,18 +96,13 @@ echo "projects/$PROJECT_NUMBER/locations/global/workloadIdentityPools/espeyu-git
    `attribute.repository` to `assertion.repository`, then add the condition
    `assertion.repository == 'abrahammenendez/espeyu'`.
 6. On the pool's own page, grant access to `espeyu-release` through service
-   account impersonation, matching only the identities whose `repository`
-   attribute is `abrahammenendez/espeyu`. The identity being granted the role is
-   the repository itself, which exists nowhere as an account, so the console
-   writes it as a principal built from the pool and that attribute:
-
-   ```
-   principalSet://iam.googleapis.com/projects/PROJECT_NUMBER/locations/global/workloadIdentityPools/espeyu-github-pool/attribute.repository/abrahammenendez/espeyu
-   ```
-
-   The console then offers a config file for a workload that reads its token from
-   a path on disk. Dismiss it: the workflow asks GitHub for a fresh token and
-   writes its own.
+   account impersonation, with attribute name `repository` and attribute value
+   `abrahammenendez/espeyu`. That value field takes the repository alone: the
+   console prefixes the pool path itself, and pasting a whole `principalSet://`
+   string there yields a binding for a repository by that name, which matches no
+   token and fails later as "Error requesting access token". Afterwards the
+   console offers a config file for a workload that reads its token from a path on
+   disk. Dismiss it: the workflow asks GitHub for a fresh token and writes its own.
 
 `PROJECT_NUMBER` is on the dashboard's Project info card, and is not the service
 account's own id. The provider's resource name, the first value the workflows
@@ -118,6 +113,14 @@ or read it back rather than assembling it:
 ```sh
 gcloud iam workload-identity-pools providers describe espeyu-github-provider \
   --location=global --workload-identity-pool=espeyu-github-pool --format='value(name)'
+```
+
+Either route, read the grant back before moving on. One member, ending in
+`/attribute.repository/abrahammenendez/espeyu`, holding
+`roles/iam.workloadIdentityUser`:
+
+```sh
+gcloud iam service-accounts get-iam-policy espeyu-release@espeyu.iam.gserviceaccount.com
 ```
 
 GitHub trades its own token for a short-lived one belonging to that account, so
