@@ -1,9 +1,6 @@
-A full-screen mirror with a true view by default, freeze, zoom, screen
-brightness and an on-screen ring light.
+A full-screen mirror with a true view by default, freeze, zoom, screen brightness and an on-screen ring light.
 
-Your front camera shows you a mirrored view. That's not what other people
-see when they look at you. Espeyu shows you the true view instead, the one
-other people see. You can still switch to the mirrored view any time.
+Your front camera shows you a mirrored view. That's not what other people see when they look at you. Espeyu shows you the true view instead, the one other people see. You can still switch to the mirrored view any time.
 
 Features:
 
@@ -15,10 +12,8 @@ Features:
 * An on-screen ring light with a warmth slider
 * Portrait and landscape
 
-Espeyu only asks for camera access. It has no way to connect to the
-internet, so nothing you do in it ever leaves your phone.
+Espeyu only asks for camera access. It has no way to connect to the internet, so nothing you do in it ever leaves your phone.
 
-No photos, no video, no accounts, no ads, no in-app purchases, no
-analytics.
+No photos, no video, no accounts, no ads, no in-app purchases, no analytics.
 
 Free and open source: https://github.com/abrahammenendez/espeyu
