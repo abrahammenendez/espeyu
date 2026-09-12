@@ -50,7 +50,7 @@ resource name and the account's email address.
 Google Cloud Shell, once:
 
 ```sh
-PROJECT_ID=espeyu-release  # project ids are global, so take another if this one is gone
+PROJECT_ID=espeyu  # project ids are global, so take another if this one is gone
 REPO=abrahammenendez/espeyu
 
 gcloud projects create "$PROJECT_ID"
@@ -59,13 +59,13 @@ gcloud services enable androidpublisher.googleapis.com iamcredentials.googleapis
 
 gcloud iam service-accounts create espeyu-release --display-name="Espeyu release"
 
-gcloud iam workload-identity-pools create github \
+gcloud iam workload-identity-pools create espeyu-github-pool \
   --location=global --display-name="GitHub Actions"
 
 # The condition is what stops another repository minting tokens for this account.
-gcloud iam workload-identity-pools providers create-oidc espeyu \
+gcloud iam workload-identity-pools providers create-oidc espeyu-github-provider \
   --location=global \
-  --workload-identity-pool=github \
+  --workload-identity-pool=espeyu-github-pool \
   --issuer-uri="https://token.actions.githubusercontent.com" \
   --attribute-mapping="google.subject=assertion.sub,attribute.repository=assertion.repository" \
   --attribute-condition="assertion.repository == '$REPO'"
@@ -75,9 +75,9 @@ PROJECT_NUMBER=$(gcloud projects describe "$PROJECT_ID" --format='value(projectN
 gcloud iam service-accounts add-iam-policy-binding \
   "espeyu-release@$PROJECT_ID.iam.gserviceaccount.com" \
   --role=roles/iam.workloadIdentityUser \
-  --member="principalSet://iam.googleapis.com/projects/$PROJECT_NUMBER/locations/global/workloadIdentityPools/github/attribute.repository/$REPO"
+  --member="principalSet://iam.googleapis.com/projects/$PROJECT_NUMBER/locations/global/workloadIdentityPools/espeyu-github-pool/attribute.repository/$REPO"
 
-echo "projects/$PROJECT_NUMBER/locations/global/workloadIdentityPools/github/providers/espeyu"
+echo "projects/$PROJECT_NUMBER/locations/global/workloadIdentityPools/espeyu-github-pool/providers/espeyu-github-provider"
 ```
 
 #### In the Cloud Console
@@ -89,21 +89,26 @@ echo "projects/$PROJECT_NUMBER/locations/global/workloadIdentityPools/github/pro
 3. IAM and Admin, Service Accounts: create one called `espeyu-release`. Its email
    address is the second value the workflows need.
 4. IAM and Admin, Workload Identity Federation, New workload provider and pool:
-   call the pool `github`, pick OpenID Connect (OIDC), give the provider the ID
-   `espeyu`, the issuer URL `https://token.actions.githubusercontent.com` and the
-   default audience.
+   call the pool `espeyu-github-pool`, pick OpenID Connect (OIDC), give the
+   provider the ID `espeyu-github-provider`, the issuer URL
+   `https://token.actions.githubusercontent.com` and the default audience.
 5. On the same provider, map `google.subject` to `assertion.sub` and
    `attribute.repository` to `assertion.repository`, then add the condition
    `assertion.repository == 'abrahammenendez/espeyu'`.
-6. Back in Service Accounts, open `espeyu-release` and grant the Workload
-   Identity User role to this principal, with the project number from step 1:
+6. On the pool's own page, grant access to `espeyu-release` through service
+   account impersonation, matching only the identities whose `repository`
+   attribute is `abrahammenendez/espeyu`. The identity being granted the role is
+   the repository itself, which exists nowhere as an account, so the console
+   writes it as a principal built from the pool and that attribute:
 
    ```
-   principalSet://iam.googleapis.com/projects/PROJECT_NUMBER/locations/global/workloadIdentityPools/github/attribute.repository/abrahammenendez/espeyu
+   principalSet://iam.googleapis.com/projects/PROJECT_NUMBER/locations/global/workloadIdentityPools/espeyu-github-pool/attribute.repository/abrahammenendez/espeyu
    ```
 
-The provider's resource name, the first value the workflows need, is
-`projects/PROJECT_NUMBER/locations/global/workloadIdentityPools/github/providers/espeyu`.
+`PROJECT_NUMBER` is on the dashboard's Project info card, and is not the service
+account's own id. The provider's resource name, the first value the workflows
+need, is
+`projects/PROJECT_NUMBER/locations/global/workloadIdentityPools/espeyu-github-pool/providers/espeyu-github-provider`.
 
 GitHub trades its own token for a short-lived one belonging to that account, so
 no key file exists to leak or rotate. The account itself holds no project roles:
@@ -125,7 +130,7 @@ for `main`. It holds two secrets and two variables:
 base64 < ~/keystores/espeyu-upload.jks | gh secret set UPLOAD_KEYSTORE --env prod
 gh secret set UPLOAD_KEYSTORE_PASSWORD --env prod
 gh variable set GOOGLE_WORKLOAD_IDENTITY_PROVIDER --env prod  # the line the block above printed
-gh variable set GOOGLE_SERVICE_ACCOUNT --env prod             # espeyu-release@espeyu-release.iam.gserviceaccount.com
+gh variable set GOOGLE_SERVICE_ACCOUNT --env prod             # espeyu-release@espeyu.iam.gserviceaccount.com
 ```
 
 ### The first upload
