@@ -42,6 +42,11 @@ a side whose long side is at most twice the short one.
 
 ### The robot account
 
+Either route below ends with the two values the workflows need: the provider's
+resource name and the account's email address.
+
+#### With gcloud
+
 Google Cloud Shell, once:
 
 ```sh
@@ -74,6 +79,31 @@ gcloud iam service-accounts add-iam-policy-binding \
 
 echo "projects/$PROJECT_NUMBER/locations/global/workloadIdentityPools/github/providers/espeyu"
 ```
+
+#### In the Cloud Console
+
+1. Create a project, and take its number from the Project info card on the
+   dashboard.
+2. APIs and Services, Library: enable the Google Play Android Developer API and
+   the IAM Service Account Credentials API.
+3. IAM and Admin, Service Accounts: create one called `espeyu-release`. Its email
+   address is the second value the workflows need.
+4. IAM and Admin, Workload Identity Federation, New workload provider and pool:
+   call the pool `github`, pick OpenID Connect (OIDC), give the provider the ID
+   `espeyu`, the issuer URL `https://token.actions.githubusercontent.com` and the
+   default audience.
+5. On the same provider, map `google.subject` to `assertion.sub` and
+   `attribute.repository` to `assertion.repository`, then add the condition
+   `assertion.repository == 'abrahammenendez/espeyu'`.
+6. Back in Service Accounts, open `espeyu-release` and grant the Workload
+   Identity User role to this principal, with the project number from step 1:
+
+   ```
+   principalSet://iam.googleapis.com/projects/PROJECT_NUMBER/locations/global/workloadIdentityPools/github/attribute.repository/abrahammenendez/espeyu
+   ```
+
+The provider's resource name, the first value the workflows need, is
+`projects/PROJECT_NUMBER/locations/global/workloadIdentityPools/github/providers/espeyu`.
 
 GitHub trades its own token for a short-lived one belonging to that account, so
 no key file exists to leak or rotate.
