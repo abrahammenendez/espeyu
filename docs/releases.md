@@ -23,8 +23,9 @@ someone promotes it.
 ## Promoting a build
 
 Run the `Promote` workflow from the Actions tab and choose `alpha`, the closed
-test, or `production`. It moves the newest internal build rather than building
-one, so what reaches production is the bundle the testers had.
+test, or `production`. It builds nothing: Play moves a bundle it already has, one
+track at a time. `alpha` takes the newest build on internal, and `production`
+takes the newest on alpha, which is what the testers ran.
 
 ## Release notes and store listing
 
