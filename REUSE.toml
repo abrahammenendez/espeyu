@@ -15,6 +15,7 @@ path = [
     "README.md",
     "SECURITY.md",
     "app/src/main/play/**",
+    "app/src/release/generated/**",
     "app/src/test/screenshots/**",
     "docs/**",
     "gradle/*",

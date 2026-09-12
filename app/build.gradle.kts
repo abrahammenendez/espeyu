@@ -53,6 +53,12 @@ android {
                 enable = true
             }
         }
+
+        // The plugin builds these to generate the profile, and only a signed build installs
+        // on a phone. The upload key is not on the machine that runs them.
+        create("benchmarkRelease") { signingConfig = signingConfigs.getByName("debug") }
+
+        create("nonMinifiedRelease") { signingConfig = signingConfigs.getByName("debug") }
     }
 
     buildFeatures {
@@ -85,6 +91,11 @@ android {
         informational +=
             listOf("AndroidGradlePluginVersion", "GradleDependency", "NewerVersionAvailable")
     }
+}
+
+// Committed rather than regenerated, so a release build needs no phone attached.
+baselineProfile {
+    saveInSrc = true
 }
 
 // The robot account signs in through Workload Identity Federation, so no key file exists
