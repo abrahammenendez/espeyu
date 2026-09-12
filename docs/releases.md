@@ -105,6 +105,10 @@ echo "projects/$PROJECT_NUMBER/locations/global/workloadIdentityPools/espeyu-git
    principalSet://iam.googleapis.com/projects/PROJECT_NUMBER/locations/global/workloadIdentityPools/espeyu-github-pool/attribute.repository/abrahammenendez/espeyu
    ```
 
+   The console then offers a config file for a workload that reads its token from
+   a path on disk. Dismiss it: the workflow asks GitHub for a fresh token and
+   writes its own.
+
 `PROJECT_NUMBER` is on the dashboard's Project info card, and is not the service
 account's own id. The provider's resource name, the first value the workflows
 need, is
