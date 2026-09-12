@@ -106,7 +106,9 @@ The provider's resource name, the first value the workflows need, is
 `projects/PROJECT_NUMBER/locations/global/workloadIdentityPools/github/providers/espeyu`.
 
 GitHub trades its own token for a short-lived one belonging to that account, so
-no key file exists to leak or rotate.
+no key file exists to leak or rotate. The account itself holds no project roles:
+the only binding is the one that lets this repository impersonate it, and what it
+may do to the app comes from the Play Console invite below.
 
 ### Play Console
 
