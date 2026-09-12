@@ -34,6 +34,9 @@ import org.robolectric.annotation.Config
 
 private const val GOLDEN_DIR = "src/test/screenshots"
 
+/** Fixed, so the golden does not move when the release version does. */
+private const val VERSION = "1.0.0"
+
 /** The mirror screen needs a camera to draw anything, which leaves these two surfaces. */
 @RunWith(RobolectricTestRunner::class)
 class ScreenshotTest {
@@ -87,7 +90,7 @@ class ScreenshotTest {
     /** The dialog is its own window, so it is matched rather than read off the root. */
     @Test
     fun `the about box`() {
-        compose.setContent { EspeyuTheme { AboutDialog(onDismiss = {}) } }
+        compose.setContent { EspeyuTheme { AboutDialog(version = VERSION, onDismiss = {}) } }
 
         compose.onNode(isDialog()).captureRoboImage("$GOLDEN_DIR/about.png")
     }

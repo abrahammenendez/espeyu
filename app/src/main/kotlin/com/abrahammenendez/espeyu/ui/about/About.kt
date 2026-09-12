@@ -28,7 +28,6 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.withLink
 import androidx.compose.ui.unit.dp
-import com.abrahammenendez.espeyu.BuildConfig
 import com.abrahammenendez.espeyu.R
 
 private const val SOURCE_URL = "https://github.com/abrahammenendez/espeyu"
@@ -72,7 +71,7 @@ fun AboutMark(onClick: () -> Unit, modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun AboutDialog(onDismiss: () -> Unit) {
+fun AboutDialog(version: String, onDismiss: () -> Unit) {
     AlertDialog(
         onDismissRequest = onDismiss,
         confirmButton = {
@@ -87,7 +86,7 @@ fun AboutDialog(onDismiss: () -> Unit) {
                 verticalArrangement = Arrangement.spacedBy(BlockSpacing),
             ) {
                 Text(stringResource(R.string.about_summary))
-                Text(stringResource(R.string.about_version, BuildConfig.VERSION_NAME))
+                Text(stringResource(R.string.about_version, version))
                 Text(authorLine())
                 Text(sourceLine())
                 Text(privacyPolicyLine())

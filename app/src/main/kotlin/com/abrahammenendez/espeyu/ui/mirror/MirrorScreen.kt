@@ -32,6 +32,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.abrahammenendez.espeyu.BuildConfig
 import com.abrahammenendez.espeyu.ui.about.AboutDialog
 import com.abrahammenendez.espeyu.ui.about.AboutMark
 
@@ -127,7 +128,9 @@ fun MirrorScreen(
             )
         }
 
-        if (isAboutOpen) AboutDialog(onDismiss = { isAboutOpen = false })
+        if (isAboutOpen) {
+            AboutDialog(version = BuildConfig.VERSION_NAME, onDismiss = { isAboutOpen = false })
+        }
     }
 }
 

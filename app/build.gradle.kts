@@ -8,6 +8,11 @@ plugins {
     alias(libs.plugins.roborazzi)
 }
 
+// semantic-release passes the version it has just tagged. Anything else is not a release,
+// and the version it falls back to loses to every build already on Play.
+val releaseVersion = providers.gradleProperty("releaseVersion").getOrElse("0.0.0")
+val (major, minor, patch) = releaseVersion.split(".").map(String::toInt)
+
 android {
     namespace = "com.abrahammenendez.espeyu"
     compileSdk = 37
@@ -16,8 +21,8 @@ android {
         applicationId = "com.abrahammenendez.espeyu"
         minSdk = 26
         targetSdk = 37
-        versionCode = 1
-        versionName = "1.0.0"
+        versionCode = major * 10000 + minor * 100 + patch
+        versionName = releaseVersion
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
