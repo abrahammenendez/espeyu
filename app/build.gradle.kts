@@ -15,8 +15,8 @@ val releaseVersion = providers.gradleProperty("releaseVersion").getOrElse("0.0.1
 
 val (major, minor, patch) = releaseVersion.split(".").map(String::toInt)
 
-val uploadKeystore = providers.environmentVariable("UPLOAD_KEYSTORE")
-val uploadKeystorePassword = providers.environmentVariable("UPLOAD_KEYSTORE_PASSWORD")
+val uploadKeystore = providers.environmentVariable("GOOGLE_UPLOAD_KEYSTORE")
+val uploadKeystorePassword = providers.environmentVariable("GOOGLE_UPLOAD_KEYSTORE_PASSWORD")
 
 android {
     namespace = "com.abrahammenendez.espeyu"

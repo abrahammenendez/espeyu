@@ -75,12 +75,12 @@ jobs:
       - name: Restore the upload keystore
         run: |
           printf '%s' "$KEYSTORE" | base64 --decode > "$RUNNER_TEMP/upload.jks"
-          echo "UPLOAD_KEYSTORE=$RUNNER_TEMP/upload.jks" >> "$GITHUB_ENV"
+          echo "GOOGLE_UPLOAD_KEYSTORE=$RUNNER_TEMP/upload.jks" >> "$GITHUB_ENV"
         env:
-          KEYSTORE: ${{ secrets.UPLOAD_KEYSTORE }}
+          KEYSTORE: ${{ secrets.GOOGLE_UPLOAD_KEYSTORE }}
       # Named by variant: the baseline profile plugin adds two the store must never see.
       - name: Publish the bundle and the listing
         run: ./gradlew publishReleaseApps -PreleaseVersion="$RELEASE_VERSION"
         env:
           RELEASE_VERSION: ${{ needs.release.outputs.new-release-version }}
-          UPLOAD_KEYSTORE_PASSWORD: ${{ secrets.UPLOAD_KEYSTORE_PASSWORD }}
+          GOOGLE_UPLOAD_KEYSTORE_PASSWORD: ${{ secrets.GOOGLE_UPLOAD_KEYSTORE_PASSWORD }}
