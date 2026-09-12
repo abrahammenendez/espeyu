@@ -4,6 +4,9 @@ on:
     branches: [main]
 permissions:
   contents: read
+# Two merges landing together would otherwise race for the same tag.
+concurrency:
+  group: release
 jobs:
   verify:
     name: Verify
@@ -45,7 +48,6 @@ jobs:
           fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     outputs:
       new-release-published: ${{ steps.semantic-release.outputs.new-release-published }}
       new-release-version: ${{ steps.semantic-release.outputs.new-release-version }}
@@ -76,8 +78,7 @@ jobs:
           echo "UPLOAD_KEYSTORE=$RUNNER_TEMP/upload.jks" >> "$GITHUB_ENV"
         env:
           KEYSTORE: ${{ secrets.UPLOAD_KEYSTORE }}
-      # The release variant by name: the baseline profile plugin adds two more, and they
-      # have no business on Play.
+      # Named by variant: the baseline profile plugin adds two the store must never see.
       - name: Publish the bundle and the listing
         run: ./gradlew publishReleaseApps -PreleaseVersion="$RELEASE_VERSION"
         env:

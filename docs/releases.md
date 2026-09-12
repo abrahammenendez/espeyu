@@ -45,7 +45,7 @@ a side whose long side is at most twice the short one.
 Google Cloud Shell, once:
 
 ```sh
-PROJECT_ID=espeyu-release
+PROJECT_ID=espeyu-release  # project ids are global, so take another if this one is gone
 REPO=abrahammenendez/espeyu
 
 gcloud projects create "$PROJECT_ID"
@@ -86,8 +86,8 @@ exclude devices, and use Play App Signing" and "Manage store presence".
 
 ### GitHub
 
-An environment named `prod`, limited to `main`, holding two secrets and two
-variables:
+Settings, Environments, an environment named `prod` with a deployment branch rule
+for `main`. It holds two secrets and two variables:
 
 ```sh
 base64 < ~/keystores/espeyu-upload.jks | gh secret set UPLOAD_KEYSTORE --env prod

@@ -31,8 +31,7 @@ jobs:
         with:
           workload_identity_provider: ${{ vars.GOOGLE_WORKLOAD_IDENTITY_PROVIDER }}
           service_account: ${{ vars.GOOGLE_SERVICE_ACCOUNT }}
-      # alpha is the closed track the testers are on. Nothing is built here: Play moves the
-      # bundle that is already on the internal track.
+      # alpha is Play's own name for the closed track.
       - name: Promote the newest internal build
         run: ./gradlew promoteReleaseArtifact --from-track internal --promote-track "$TRACK"
         env:

@@ -43,6 +43,13 @@ class AboutTest {
     }
 
     @Test
+    fun `the dialog shows the version it is given`() {
+        compose.setContent { EspeyuTheme { AboutDialog(version = VERSION, onDismiss = {}) } }
+
+        compose.onNodeWithText("Version: $VERSION").assertIsDisplayed()
+    }
+
+    @Test
     fun `the dialog links the privacy policy`() {
         compose.setContent { EspeyuTheme { AboutDialog(version = VERSION, onDismiss = {}) } }
 

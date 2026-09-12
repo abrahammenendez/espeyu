@@ -9,8 +9,8 @@ plugins {
     alias(libs.plugins.roborazzi)
 }
 
-// semantic-release passes the version it has just tagged. A build without one is not a
-// release, and takes the lowest version there is.
+// The release workflow passes the version semantic-release has just tagged. Any other
+// build is not a release, and takes the lowest version there is.
 val releaseVersion = providers.gradleProperty("releaseVersion").getOrElse("0.0.1")
 
 val (major, minor, patch) = releaseVersion.split(".").map(String::toInt)
@@ -31,11 +31,11 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    signingConfigs {
-        // The release workflow is the only place that holds the upload key. Everywhere else
-        // a release build comes out unsigned, which is as far as it should get.
+    // Only the release workflow holds the upload key, so a release built anywhere else
+    // comes out unsigned, which is as far as it should get.
+    val upload =
         uploadKeystore.orNull?.let { keystore ->
-            create("upload") {
+            signingConfigs.create("upload") {
                 storeFile = file(keystore)
                 storePassword = uploadKeystorePassword.get()
                 keyAlias = "espeyu-upload"
@@ -43,21 +43,18 @@ android {
                 keyPassword = uploadKeystorePassword.get()
             }
         }
-    }
 
     buildTypes {
         release {
-            signingConfig = signingConfigs.findByName("upload")
+            signingConfig = upload
 
             optimization {
                 enable = true
             }
         }
 
-        // The plugin builds these to generate the profile, and only a signed build installs
-        // on the phone that generates it. The upload key is not on that machine.
+        // A phone installs signed builds only, and neither of these ever leaves one.
         create("benchmarkRelease") { signingConfig = signingConfigs.getByName("debug") }
-
         create("nonMinifiedRelease") { signingConfig = signingConfigs.getByName("debug") }
     }
 
@@ -99,8 +96,8 @@ baselineProfile {
 }
 
 // The robot account signs in through Workload Identity Federation, so no key file exists
-// to leak. Every build lands on the internal track, and moving one on is deliberate. The
-// listing goes up with it, which is what keeps Play from disagreeing with the repository.
+// to leak. The listing goes up with every build, which is what stops Play drifting from
+// the repository.
 play {
     useApplicationDefaultCredentials = true
     defaultToAppBundles = true
