@@ -112,7 +112,13 @@ echo "projects/$PROJECT_NUMBER/locations/global/workloadIdentityPools/espeyu-git
 `PROJECT_NUMBER` is on the dashboard's Project info card, and is not the service
 account's own id. The provider's resource name, the first value the workflows
 need, is
-`projects/PROJECT_NUMBER/locations/global/workloadIdentityPools/espeyu-github-pool/providers/espeyu-github-provider`.
+`projects/PROJECT_NUMBER/locations/global/workloadIdentityPools/espeyu-github-pool/providers/espeyu-github-provider`,
+or read it back rather than assembling it:
+
+```sh
+gcloud iam workload-identity-pools providers describe espeyu-github-provider \
+  --location=global --workload-identity-pool=espeyu-github-pool --format='value(name)'
+```
 
 GitHub trades its own token for a short-lived one belonging to that account, so
 no key file exists to leak or rotate. The account itself holds no project roles:
@@ -131,8 +137,8 @@ Settings, Environments, an environment named `prod` with a deployment branch rul
 for `main`. It holds two secrets and two variables:
 
 ```sh
-base64 < ~/keystores/espeyu-upload.jks | gh secret set UPLOAD_KEYSTORE --env prod
-gh secret set UPLOAD_KEYSTORE_PASSWORD --env prod
+base64 < ~/keystores/espeyu-upload.jks | gh secret set GOOGLE_UPLOAD_KEYSTORE --env prod
+gh secret set GOOGLE_UPLOAD_KEYSTORE_PASSWORD --env prod
 gh variable set GOOGLE_WORKLOAD_IDENTITY_PROVIDER --env prod  # the line the block above printed
 gh variable set GOOGLE_SERVICE_ACCOUNT --env prod             # espeyu-release@espeyu.iam.gserviceaccount.com
 ```
