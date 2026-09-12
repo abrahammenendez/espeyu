@@ -184,8 +184,7 @@ frame, which is the number that makes "fast" true.
 Merging a pull request to `main` is the release. semantic-release reads the
 squash-merged titles and tags the version, and the same workflow signs the
 bundle with the upload key and uploads it, with the store listing, to Play's
-internal track. `feat` makes a minor release, `fix`, `revert` and `chore(deps)`
-a patch, and anything else waits for one of those.
+internal track. `feat` makes a minor release and the other three types a patch.
 
 `versionName` is that version and `versionCode` follows from it, so neither is
 written down anywhere. Moving a build to the closed test or to production is the

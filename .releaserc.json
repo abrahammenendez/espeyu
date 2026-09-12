@@ -12,7 +12,7 @@
           { "type": "feat", "release": "minor" },
           { "type": "fix", "release": "patch" },
           { "type": "revert", "release": "patch" },
-          { "type": "chore", "scope": "deps", "release": "patch" }
+          { "type": "chore", "release": "patch" }
         ]
       }
     ],

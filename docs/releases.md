@@ -16,9 +16,9 @@ version, tags it and publishes the GitHub release. The publish job signs the
 bundle with the upload key and runs `publishReleaseApps`, which uploads the
 bundle and the store listing to the internal track.
 
-`feat` makes a minor release, and `fix`, `revert` and `chore(deps)` a patch.
-Anything else leaves the publish job skipped, so documentation and CI changes
-reach nobody's phone on their own.
+`feat` makes a minor release and `fix`, `revert` and `chore` a patch, so every
+merge reaches the internal track. Nobody but the internal testers sees it until
+someone promotes it.
 
 ## Promoting a build
 
