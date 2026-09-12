@@ -1,0 +1,38 @@
+name: Promote
+on:
+  workflow_dispatch:
+    inputs:
+      track:
+        description: 'Track to promote the newest internal build to'
+        required: true
+        type: choice
+        options:
+          - alpha
+          - production
+permissions:
+  contents: read
+jobs:
+  promote:
+    name: Promote
+    runs-on: ubuntu-latest
+    environment: prod
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - name: Set up Android
+        uses: ./.github/actions/set-up-android
+      - name: Log in to Google Cloud
+        uses: google-github-actions/auth@v3
+        with:
+          workload_identity_provider: ${{ vars.GOOGLE_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ vars.GOOGLE_SERVICE_ACCOUNT }}
+      # alpha is Play's own name for the closed track.
+      - name: Promote the newest internal build
+        run: ./gradlew promoteReleaseArtifact --from-track internal --promote-track "$TRACK"
+        env:
+          TRACK: ${{ inputs.track }}

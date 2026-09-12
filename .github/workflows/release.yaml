@@ -1,42 +1,86 @@
 name: Release
 on:
   push:
-    tags: ['v*']
+    branches: [main]
 permissions:
-  contents: write
+  contents: read
+# Two merges landing together would otherwise race for the same tag.
+concurrency:
+  group: release
 jobs:
   verify:
     name: Verify
     uses: ./.github/workflows/verify.yaml
   release:
-    name: Publish the GitHub release
+    name: Tag and release
     needs: verify
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v7
         with:
           fetch-depth: 0
           persist-credentials: false
-      # F-Droid's updater keys off the tag, so a tag that disagrees with the version
-      # it builds, or arrives without its changelog, publishes the wrong release.
-      - name: Check the tag against the app version
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: lts/*
+      # Pinned: 10.x renders through conventional-changelog-writer@9, and
+      # release-notes-generator is still on writer@8.
+      - name: Set up semantic-release
         run: |
-          name=$(sed -n 's/.*versionName = "\(.*\)"/\1/p' app/build.gradle.kts)
-          code=$(sed -n 's/.*versionCode = \([0-9]*\)/\1/p' app/build.gradle.kts)
-          changelog="fastlane/metadata/android/en-US/changelogs/$code.txt"
-          if [ "v$name" != "$GITHUB_REF_NAME" ]; then
-            echo "Tag $GITHUB_REF_NAME does not match versionName $name" >&2
-            exit 1
+          npm install --no-save \
+          semantic-release \
+          @semantic-release/exec \
+          conventional-changelog-conventionalcommits@9
+      - name: Publish the release and tag
+        id: semantic-release
+        run: |
+          npx semantic-release
+          if [ -f .new-semantic-release-version ]; then
+            echo "new-release-published=true" >> "$GITHUB_OUTPUT"
+            echo "new-release-version=$(cat .new-semantic-release-version)" >> "$GITHUB_OUTPUT"
+            rm .new-semantic-release-version
+          else
+            echo "new-release-published=false" >> "$GITHUB_OUTPUT"
           fi
-          if [ ! -f "$changelog" ]; then
-            echo "versionCode $code has no $changelog" >&2
-            exit 1
-          fi
-      # No APK is attached. F-Droid builds and signs from this tag, which is the
-      # only distribution channel and the reason no signing key lives here.
-      - name: Create the release
-        run: gh release create "$GITHUB_REF_NAME" --generate-notes --verify-tag
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GH_REPO: ${{ github.repository }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    outputs:
+      new-release-published: ${{ steps.semantic-release.outputs.new-release-published }}
+      new-release-version: ${{ steps.semantic-release.outputs.new-release-version }}
+  publish:
+    name: Publish to Play
+    needs: release
+    if: needs.release.outputs.new-release-published == 'true'
+    runs-on: ubuntu-latest
+    environment: prod
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - name: Set up Android
+        uses: ./.github/actions/set-up-android
+      - name: Log in to Google Cloud
+        uses: google-github-actions/auth@v3
+        with:
+          workload_identity_provider: ${{ vars.GOOGLE_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ vars.GOOGLE_SERVICE_ACCOUNT }}
+      - name: Restore the upload keystore
+        run: |
+          printf '%s' "$KEYSTORE" | base64 --decode > "$RUNNER_TEMP/upload.jks"
+          echo "GOOGLE_UPLOAD_KEYSTORE=$RUNNER_TEMP/upload.jks" >> "$GITHUB_ENV"
+        env:
+          KEYSTORE: ${{ secrets.GOOGLE_UPLOAD_KEYSTORE }}
+      # Named by variant: the baseline profile plugin adds two the store must never see.
+      - name: Publish the bundle and the listing
+        run: ./gradlew publishReleaseApps -PreleaseVersion="$RELEASE_VERSION"
+        env:
+          RELEASE_VERSION: ${{ needs.release.outputs.new-release-version }}
+          GOOGLE_UPLOAD_KEYSTORE_PASSWORD: ${{ secrets.GOOGLE_UPLOAD_KEYSTORE_PASSWORD }}

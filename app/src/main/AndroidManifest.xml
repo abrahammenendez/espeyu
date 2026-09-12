@@ -11,7 +11,7 @@
     <!--
       CameraX pulls in camera-video, and through it media3-common, which declares this. Espeyu
       binds no VideoCapture use case and makes no network calls, so the permission is dropped
-      rather than shown on the app's F-Droid listing.
+      rather than listed against the app on Play.
     -->
     <uses-permission
         android:name="android.permission.ACCESS_NETWORK_STATE"

@@ -15,21 +15,8 @@ jobs:
         uses: actions/checkout@v7
         with:
           persist-credentials: false
-      # Matches the daemon criteria in gradle/gradle-daemon-jvm.properties, so Gradle
-      # runs on this JDK instead of provisioning its own.
-      - name: Set up JDK
-        uses: actions/setup-java@v6
-        with:
-          distribution: temurin
-          java-version: '25'
-      - name: Set up the Android SDK
-        uses: android-actions/setup-android@v4
-        with:
-          packages: 'platforms;android-37.0 build-tools;36.0.0'
-      # Held at v5: from v6 the caching component is proprietary and carries its own
-      # terms of use, which an AGPL project distributed through F-Droid will not take on.
-      - name: Set up Gradle
-        uses: gradle/actions/setup-gradle@v5
+      - name: Set up Android
+        uses: ./.github/actions/set-up-android
       - name: Format
         run: ./gradlew spotlessCheck
       - name: Lint

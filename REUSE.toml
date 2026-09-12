@@ -8,16 +8,17 @@ path = [
     ".commitlintrc.yml",
     ".github/**",
     ".gitignore",
+    ".releaserc.json",
     "CONTRIBUTING.md",
     "LICENSE",
     "PRIVACY.md",
     "README.md",
     "SECURITY.md",
+    "app/src/main/play/**",
+    "app/src/release/generated/baselineProfiles/**",
     "app/src/test/screenshots/**",
     "docs/**",
-    "fastlane/**",
     "gradle/*",
-    "imgs/google/**",
 ]
 SPDX-FileCopyrightText = "2026 Abraham Menéndez"
 SPDX-License-Identifier = "AGPL-3.0-or-later"

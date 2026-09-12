@@ -15,6 +15,8 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 
+private const val VERSION = "1.0.0"
+
 @RunWith(RobolectricTestRunner::class)
 class AboutTest {
 
@@ -32,7 +34,7 @@ class AboutTest {
 
     @Test
     fun `the dialog credits the licences and links the source`() {
-        compose.setContent { EspeyuTheme { AboutDialog(onDismiss = {}) } }
+        compose.setContent { EspeyuTheme { AboutDialog(version = VERSION, onDismiss = {}) } }
 
         compose.onNodeWithText("AGPL-3.0-or-later", substring = true).assertIsDisplayed()
         compose
@@ -41,8 +43,15 @@ class AboutTest {
     }
 
     @Test
+    fun `the dialog shows the version it is given`() {
+        compose.setContent { EspeyuTheme { AboutDialog(version = VERSION, onDismiss = {}) } }
+
+        compose.onNodeWithText("Version: $VERSION").assertIsDisplayed()
+    }
+
+    @Test
     fun `the dialog links the privacy policy`() {
-        compose.setContent { EspeyuTheme { AboutDialog(onDismiss = {}) } }
+        compose.setContent { EspeyuTheme { AboutDialog(version = VERSION, onDismiss = {}) } }
 
         compose
             .onNodeWithText(
@@ -54,7 +63,9 @@ class AboutTest {
     @Test
     fun `closing the dialog reports it`() {
         var dismissed = false
-        compose.setContent { EspeyuTheme { AboutDialog(onDismiss = { dismissed = true }) } }
+        compose.setContent {
+            EspeyuTheme { AboutDialog(version = VERSION, onDismiss = { dismissed = true }) }
+        }
 
         compose.onNodeWithText("Close").performClick()
 
