@@ -5,12 +5,13 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.baselineprofile)
     alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.play.publisher)
     alias(libs.plugins.roborazzi)
 }
 
 // semantic-release passes the version it has just tagged. Anything else is not a release,
-// and the version it falls back to loses to every build already on Play.
-val releaseVersion = providers.gradleProperty("releaseVersion").getOrElse("0.0.0")
+// and falls back to the lowest version there is.
+val releaseVersion = providers.gradleProperty("releaseVersion").getOrElse("0.0.1")
 val (major, minor, patch) = releaseVersion.split(".").map(String::toInt)
 
 val uploadKeystore = providers.environmentVariable("UPLOAD_KEYSTORE")
@@ -83,6 +84,13 @@ android {
         informational +=
             listOf("AndroidGradlePluginVersion", "GradleDependency", "NewerVersionAvailable")
     }
+}
+
+// The robot account signs in through Workload Identity Federation, so no key file exists
+// to leak. Every build lands on the internal track, and moving one on is deliberate.
+play {
+    useApplicationDefaultCredentials = true
+    track = "internal"
 }
 
 kotlin {

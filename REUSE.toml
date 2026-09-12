@@ -13,11 +13,10 @@ path = [
     "PRIVACY.md",
     "README.md",
     "SECURITY.md",
+    "app/src/main/play/**",
     "app/src/test/screenshots/**",
     "docs/**",
-    "fastlane/**",
     "gradle/*",
-    "imgs/google/**",
 ]
 SPDX-FileCopyrightText = "2026 Abraham Menéndez"
 SPDX-License-Identifier = "AGPL-3.0-or-later"
