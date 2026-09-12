@@ -13,6 +13,9 @@ plugins {
 val releaseVersion = providers.gradleProperty("releaseVersion").getOrElse("0.0.0")
 val (major, minor, patch) = releaseVersion.split(".").map(String::toInt)
 
+val uploadKeystore = providers.environmentVariable("UPLOAD_KEYSTORE")
+val uploadKeystorePassword = providers.environmentVariable("UPLOAD_KEYSTORE_PASSWORD")
+
 android {
     namespace = "com.abrahammenendez.espeyu"
     compileSdk = 37
@@ -26,8 +29,24 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    signingConfigs {
+        // The release workflow is the only place that holds the upload key. Everywhere else
+        // a release build comes out unsigned, which is as far as it should get.
+        uploadKeystore.orNull?.let { keystore ->
+            create("upload") {
+                storeFile = file(keystore)
+                storePassword = uploadKeystorePassword.get()
+                keyAlias = "espeyu-upload"
+                // PKCS12 holds one password, for the store and the key alike.
+                keyPassword = uploadKeystorePassword.get()
+            }
+        }
+    }
+
     buildTypes {
         release {
+            signingConfig = signingConfigs.findByName("upload")
+
             optimization {
                 enable = true
             }
