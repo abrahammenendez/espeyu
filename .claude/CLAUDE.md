@@ -61,9 +61,12 @@ separate job.
   `MirrorViewModelTest` runs without it, against a real preferences store on a
   temporary file, and waits for results instead of advancing virtual time. Adding
   `@RunWith(RobolectricTestRunner::class)` to it would make it hang, not fail.
-- **`versionCode` and `versionName` have to stay literals.** F-Droid parses them
-  out of the tagged revision with a regex and resolves nothing, so deriving
-  either from the other in Gradle would stop the updater seeing new releases.
+- **A release build outside CI is unsigned and versioned `0.0.1`.** The version
+  arrives as `-PreleaseVersion` from semantic-release and the upload key only
+  exists in the release workflow, so neither is in the repository.
+- **GPP's plain tasks cover every variant**, and the baseline profile plugin adds
+  two. The workflows name the release variant, `publishReleaseApps` and
+  `promoteReleaseArtifact`, so a profiling build never reaches Play.
 - **`ScreenshotTest` compares against golden images** in
   `app/src/test/screenshots/`, so any change to how a screen looks fails it with
   a bare `AssertionError`. `app/build/outputs/roborazzi/` holds the diff. Record

@@ -9,8 +9,8 @@ plugins {
     alias(libs.plugins.roborazzi)
 }
 
-// semantic-release passes the version it has just tagged. Anything else is not a release,
-// and falls back to the lowest version there is.
+// semantic-release passes the version it has just tagged. A build without one is not a
+// release, and takes the lowest version there is.
 val releaseVersion = providers.gradleProperty("releaseVersion").getOrElse("0.0.1")
 
 val (major, minor, patch) = releaseVersion.split(".").map(String::toInt)
@@ -55,7 +55,7 @@ android {
         }
 
         // The plugin builds these to generate the profile, and only a signed build installs
-        // on a phone. The upload key is not on the machine that runs them.
+        // on the phone that generates it. The upload key is not on that machine.
         create("benchmarkRelease") { signingConfig = signingConfigs.getByName("debug") }
 
         create("nonMinifiedRelease") { signingConfig = signingConfigs.getByName("debug") }

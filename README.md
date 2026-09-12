@@ -2,7 +2,7 @@
 
 :bulb: A modern, privacy-first, fast mirror for your phone. Free, open-source, no ads.
 
-[![Main](https://github.com/abrahammenendez/espeyu/actions/workflows/main.yaml/badge.svg)](https://github.com/abrahammenendez/espeyu/actions/workflows/main.yaml)
+[![Release](https://github.com/abrahammenendez/espeyu/actions/workflows/release.yaml/badge.svg)](https://github.com/abrahammenendez/espeyu/actions/workflows/release.yaml)
 [![REUSE status](https://api.reuse.software/badge/github.com/abrahammenendez/espeyu)](https://api.reuse.software/info/github.com/abrahammenendez/espeyu)
 
 You open it and you see yourself, full screen, straight away.
@@ -181,19 +181,20 @@ frame, which is the number that makes "fast" true.
 
 ## Releasing
 
-F-Droid builds and signs from a git tag, which is why no signing key and no APK
-live here.
+Merging a pull request to `main` is the release. semantic-release reads the
+squash-merged titles and tags the version, and the same workflow signs the
+bundle with the upload key and uploads it, with the store listing, to Play's
+internal track. `feat` makes a minor release, `fix`, `revert` and `chore(deps)`
+a patch, and anything else waits for one of those.
 
-1. Raise `versionCode` and `versionName` in
-   [`app/build.gradle.kts`](app/build.gradle.kts).
-2. Add `fastlane/metadata/android/en-US/changelogs/<versionCode>.txt`, which is
-   what the F-Droid listing shows as the release notes.
-3. Tag the commit `v<versionName>` and push it. The release workflow refuses a
-   tag that disagrees with `versionName`, or that arrives without the changelog
-   for its `versionCode`, and otherwise publishes the GitHub release.
+`versionName` is that version and `versionCode` follows from it, so neither is
+written down anywhere. Moving a build to the closed test or to production is the
+`Promote` workflow, run by hand.
 
-F-Droid reads the listing text and images from `fastlane/metadata/`. See
-[`docs/f-droid.md`](docs/f-droid.md) for the submission itself.
+The listing text and images live in [`app/src/main/play/`](app/src/main/play),
+which is their only source: an edit made in the Play Console is overwritten by
+the next release. [`docs/releases.md`](docs/releases.md) is the runbook, and
+covers the robot account behind all this.
 
 ## Licence
 
