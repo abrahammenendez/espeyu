@@ -31,8 +31,10 @@ jobs:
         with:
           workload_identity_provider: ${{ vars.GOOGLE_WORKLOAD_IDENTITY_PROVIDER }}
           service_account: ${{ vars.GOOGLE_SERVICE_ACCOUNT }}
-      # alpha is Play's own name for the closed track.
-      - name: Promote the newest internal build
-        run: ./gradlew promoteReleaseArtifact --from-track internal --promote-track "$TRACK"
+      # alpha is Play's own name for the closed track. One track at a time, so production
+      # gets the build the testers ran rather than whatever reached internal since.
+      - name: Promote the newest build
+        run: ./gradlew promoteReleaseArtifact --from-track "$FROM_TRACK" --promote-track "$TRACK"
         env:
           TRACK: ${{ inputs.track }}
+          FROM_TRACK: ${{ inputs.track == 'production' && 'alpha' || 'internal' }}
