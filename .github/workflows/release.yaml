@@ -76,8 +76,10 @@ jobs:
           echo "UPLOAD_KEYSTORE=$RUNNER_TEMP/upload.jks" >> "$GITHUB_ENV"
         env:
           KEYSTORE: ${{ secrets.UPLOAD_KEYSTORE }}
-      - name: Publish the bundle
-        run: ./gradlew publishBundle -PreleaseVersion="$RELEASE_VERSION"
+      # The release variant by name: the baseline profile plugin adds two more, and they
+      # have no business on Play.
+      - name: Publish the bundle and the listing
+        run: ./gradlew publishReleaseApps -PreleaseVersion="$RELEASE_VERSION"
         env:
           RELEASE_VERSION: ${{ needs.release.outputs.new-release-version }}
           UPLOAD_KEYSTORE_PASSWORD: ${{ secrets.UPLOAD_KEYSTORE_PASSWORD }}

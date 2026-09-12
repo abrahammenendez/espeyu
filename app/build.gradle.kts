@@ -12,6 +12,7 @@ plugins {
 // semantic-release passes the version it has just tagged. Anything else is not a release,
 // and falls back to the lowest version there is.
 val releaseVersion = providers.gradleProperty("releaseVersion").getOrElse("0.0.1")
+
 val (major, minor, patch) = releaseVersion.split(".").map(String::toInt)
 
 val uploadKeystore = providers.environmentVariable("UPLOAD_KEYSTORE")
@@ -87,9 +88,11 @@ android {
 }
 
 // The robot account signs in through Workload Identity Federation, so no key file exists
-// to leak. Every build lands on the internal track, and moving one on is deliberate.
+// to leak. Every build lands on the internal track, and moving one on is deliberate. The
+// listing goes up with it, which is what keeps Play from disagreeing with the repository.
 play {
     useApplicationDefaultCredentials = true
+    defaultToAppBundles = true
     track = "internal"
 }
 

@@ -34,6 +34,6 @@ jobs:
       # alpha is the closed track the testers are on. Nothing is built here: Play moves the
       # bundle that is already on the internal track.
       - name: Promote the newest internal build
-        run: ./gradlew promoteArtifact --from-track internal --promote-track "$TRACK"
+        run: ./gradlew promoteReleaseArtifact --from-track internal --promote-track "$TRACK"
         env:
           TRACK: ${{ inputs.track }}

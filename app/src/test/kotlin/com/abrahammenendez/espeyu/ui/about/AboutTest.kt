@@ -56,7 +56,9 @@ class AboutTest {
     @Test
     fun `closing the dialog reports it`() {
         var dismissed = false
-        compose.setContent { EspeyuTheme { AboutDialog(version = VERSION, onDismiss = { dismissed = true }) } }
+        compose.setContent {
+            EspeyuTheme { AboutDialog(version = VERSION, onDismiss = { dismissed = true }) }
+        }
 
         compose.onNodeWithText("Close").performClick()
 
