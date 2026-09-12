@@ -8,6 +8,10 @@ permissions:
 jobs:
   title:
     name: Title
+    # Dependabot writes its titles from the prefix in dependabot.yml, and they name
+    # dependencies verbatim, so a version like 1.0.0-RC1 would fail the lowercase rule.
+    # A skipped job still satisfies the required check.
+    if: github.event.pull_request.user.login != 'dependabot[bot]'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
