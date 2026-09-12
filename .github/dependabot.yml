@@ -17,7 +17,3 @@ updates:
     commit-message:
       prefix: chore
       include: scope
-    ignore:
-      # See the comment on the step in .github/workflows/verify.yaml.
-      - dependency-name: gradle/actions
-        update-types: [version-update:semver-major]
