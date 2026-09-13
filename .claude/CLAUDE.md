@@ -57,10 +57,10 @@ separate job.
 - **Robolectric is pinned to `sdk=36`** in
   `app/src/test/resources/robolectric.properties`, one below `targetSdk`, which
   is as far as 4.16.1 goes.
-- **`Dispatchers.setMain` does not take effect under Robolectric**, so
-  `MirrorViewModelTest` runs without it, against a real preferences store on a
-  temporary file, and waits for results instead of advancing virtual time. Adding
-  `@RunWith(RobolectricTestRunner::class)` to it would make it hang, not fail.
+- **`MirrorViewModelTest` runs on the plain JVM** with `Dispatchers.Main` set to
+  `Unconfined`, against a real preferences store on a temporary file. It waits
+  for results instead of advancing virtual time, and clears its
+  `ViewModelStore` in `tearDown` so no persistence collector outlives a test.
 - **A release build outside CI is unsigned and versioned `0.0.1`.** The version
   arrives as `-PreleaseVersion` from semantic-release and the upload key only
   exists in the release workflow, so neither is in the repository.
