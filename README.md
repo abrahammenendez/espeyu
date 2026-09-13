@@ -5,13 +5,12 @@
 [![Release](https://github.com/abrahammenendez/espeyu/actions/workflows/release.yaml/badge.svg)](https://github.com/abrahammenendez/espeyu/actions/workflows/release.yaml)
 [![REUSE status](https://api.reuse.software/badge/github.com/abrahammenendez/espeyu)](https://api.reuse.software/info/github.com/abrahammenendez/espeyu)
 
-You open it and you see yourself, full screen, straight away.
+Your front camera shows you a mirrored view. That's not what other people see when they look at you.
+Espeyu shows you the true view instead, the one other people see. You can still switch to the
+mirrored view any time.
 
-Every phone mirrors its front camera preview, and no setting turns that off.
-The "mirror front camera" option both Android and iOS expose only decides how a
-saved photo is written; the live view stays flipped. So you can never see
-yourself live the way other people see you. Espeyu shows you the true view by
-default and keeps the mirrored one a tap away.
+In addition to true view by default, it also has freeze, zoom, screen brightness and an on-screen
+ring light.
 
 Espeyu takes no photos, records no video, writes nothing to disk beyond your own
 preferences, and has no `INTERNET` permission. It's free, open source and
@@ -71,7 +70,7 @@ artifact's API, and it cannot read the displayed frame back.
 
 One floating toolbar, matched by hand to `FloatingToolbarTokens` in Material 3
 1.4.0: 64dp tall, 8dp of padding, 4dp between buttons and 16dp off the screen
-edge. `HorizontalFloatingToolbar` is the component for this and it is not
+edge. `HorizontalFloatingToolbar` is the component for this, and it is not
 usable here, since it lands in material3 1.5.0-alpha and is still opt-in
 experimental, while the tokens it would apply ship in the stable release. The
 bar takes its width from the button row through `IntrinsicSize.Min`, so a
