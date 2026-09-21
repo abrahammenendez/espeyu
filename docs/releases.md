@@ -12,11 +12,11 @@ the release. Everything past the internal track is a deliberate step.
 
 The `Release` workflow runs `Verify`, then semantic-release, then the publish
 job. semantic-release reads the squash-merged pull request titles, works out the
-version, tags it and publishes the GitHub release. The publish job signs the
+version, tags it, and publishes the GitHub release. The publish job signs the
 bundle with the upload key and runs `publishReleaseApps`, which uploads the
 bundle and the store listing to the internal track.
 
-`feat` makes a minor release and `fix`, `revert` and `chore` a patch, so every
+`feat` makes a minor release and `fix`, `revert`, and `chore` a patch, so every
 merge reaches the internal track. Nobody but the internal testers sees it until
 someone promotes it.
 

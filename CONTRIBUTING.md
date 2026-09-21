@@ -1,6 +1,6 @@
 # Contributing to Espeyu
 
-Bug reports, ideas and pull requests are welcome. Espeyu is deliberately small,
+Bug reports, ideas, and pull requests are welcome. Espeyu is deliberately small,
 so read the non-goals before proposing a feature.
 
 ## Non-goals
@@ -8,9 +8,9 @@ so read the non-goals before proposing a feature.
 These are binding. A change that needs any of them is declined, however well it
 is made.
 
-- Photo capture, video, saving or sharing.
+- Photo capture, video, saving, or sharing.
 - Filters.
-- Accounts, ads, in-app purchases or analytics.
+- Accounts, ads, in-app purchases, or analytics.
 - Anything that needs the `INTERNET` permission.
 - Dependencies or features that make the app slower or bigger, without
   removing something in return.
@@ -35,10 +35,10 @@ Pull requests are squash merged, so the commits on your branch can say anything:
 the title becomes the one commit on `main`. CI checks it as a
 [Conventional Commit](https://www.conventionalcommits.org/en/v1.0.0/).
 
-- The type is `feat`, `fix`, `revert` or `chore`. Documentation, refactoring,
-  tests, formatting, performance and CI changes are all `chore`. Every merge
+- The type is `feat`, `fix`, `revert`, or `chore`. Documentation, refactoring,
+  tests, formatting, performance, and CI changes are all `chore`. Every merge
   is a release, as [Releasing](README.md#releasing) describes.
-- Type, scope and subject are lowercase, with no trailing period.
+- Type, scope, and subject are lowercase, with no trailing period.
 
 ## Licence
 
