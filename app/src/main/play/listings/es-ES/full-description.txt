@@ -1,11 +1,11 @@
-Un espejo a pantalla completa que muestra la vista real por defecto, con congelación de imagen, zoom, control de brillo y un aro de luz en pantalla.
+Un espejo a pantalla completa que muestra tu imagen real por defecto. Puedes congelarla, hacer zoom, controlar el brillo y encender un aro de luz en pantalla.
 
-La cámara frontal de tu móvil te muestra al revés, como un espejo. Nadie más te ve así. Espeyu te deja verte como te ven los demás, y la vista en espejo sigue ahí para cuando la quieras.
+La cámara frontal de tu móvil te muestra al revés, como un espejo. Nadie más te ve así. Espeyu te deja verte como te ven los demás, y la imagen invertida sigue ahí para cuando la quieras.
 
 Funciones:
 
 * Cámara a pantalla completa, frontal o trasera.
-* Vista real y vista en espejo, con cambio en directo.
+* Imagen real e imagen invertida, con cambio en directo.
 * Congela la imagen para que tu pose se quede quieta. Al congelarla, la cámara se apaga.
 * Pellizca para hacer zoom.
 * Un control de brillo que no cambia el ajuste de tu móvil.

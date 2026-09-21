@@ -4,8 +4,8 @@
   SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 <resources>
-    <string name="action_show_true_view">Mostrar la vista real</string>
-    <string name="action_show_mirrored_view">Mostrar la vista en espejo</string>
+    <string name="action_show_true_view">Mostrar la imagen real</string>
+    <string name="action_show_mirrored_view">Mostrar la imagen invertida</string>
     <string name="action_switch_lens">Cambiar de cámara</string>
     <string name="action_freeze">Congelar la imagen</string>
     <string name="action_unfreeze">Descongelar la imagen</string>
