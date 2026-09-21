@@ -1,1 +1,1 @@
-A full-screen mirror that shows the true view by default, with freeze-frame, zoom, brightness control, and on-screen ring light.
+A full-screen mirror that shows the true view by default, with freeze-frame, zoom, brightness control, and an on-screen ring light.

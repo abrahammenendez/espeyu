@@ -1,16 +1,16 @@
-A full-screen mirror that shows the true view by default, with freeze-frame, zoom, a brightness control, and an on-screen ring light.
+A full-screen mirror that shows the true view by default, with freeze-frame, zoom, brightness control, and an on-screen ring light.
 
-Your front camera shows you a mirrored view. That's not what other people see when they look at you. Espeyu shows you the true view instead, the one other people see. You can still switch to the mirrored view any time.
+Every phone's front camera shows you a mirrored image, which is not how other people see you. Espeyu shows you the true view instead, and you can switch back to the mirrored one at any time.
 
 Features:
 
-* Full-screen camera, front or back
-* True view and mirrored view, switched live
-* Freeze the frame to hold a look still. Freezing turns the camera off
-* Pinch to zoom
-* A brightness slider that won't change your phone's own setting
-* An on-screen ring light with a warmth slider
-* Portrait and landscape
+* Full-screen camera, front or back.
+* True view and mirrored view, switched live.
+* Freeze the frame to hold a look still. Freezing turns the camera off.
+* Pinch to zoom.
+* A brightness slider that won't change your phone's own setting.
+* An on-screen ring light with a warmth slider.
+* Portrait and landscape.
 
 Espeyu only asks for camera access. It has no way to connect to the internet, so nothing you do in it ever leaves your phone.
 

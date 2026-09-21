@@ -1,16 +1,16 @@
-Un espejo a pantalla completa que muestra la vista real por defecto, con congelación de imagen, zoom, un control de brillo y un aro de luz en pantalla.
+Un espejo a pantalla completa que muestra la vista real por defecto, con congelación de imagen, zoom, control de brillo y un aro de luz en pantalla.
 
-La cámara frontal te muestra una vista en espejo. No es lo que ven los demás cuando te miran. Espeyu te muestra la vista real, la que ven los demás. Aun así, puedes cambiar a la vista en espejo cuando quieras.
+La cámara frontal de cualquier teléfono te muestra en espejo, y así no es como te ven los demás. Espeyu te muestra la vista real y puedes volver a la vista en espejo cuando quieras.
 
 Funciones:
 
-* Cámara a pantalla completa, frontal o trasera
-* Vista real y vista en espejo, con cambio en vivo
-* Congela la imagen para que tu pose se quede quieta. Al congelarla, la cámara se apaga
-* Pellizca para hacer zoom
-* Un control de brillo que no cambia el ajuste de tu teléfono
-* Un aro de luz en pantalla con control de calidez
-* En vertical y en horizontal
+* Cámara a pantalla completa, frontal o trasera.
+* Vista real y vista en espejo, con cambio en vivo.
+* Congela la imagen para que tu pose se quede quieta. Al congelarla, la cámara se apaga.
+* Pellizca para hacer zoom.
+* Un control de brillo que no cambia el ajuste de tu teléfono.
+* Un aro de luz en pantalla con control de calidez.
+* En vertical y en horizontal.
 
 Espeyu solo pide acceso a la cámara. No tiene forma de conectarse a internet, así que nada de lo que hagas en la app sale nunca de tu teléfono.
 
