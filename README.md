@@ -9,7 +9,7 @@ Your front camera shows you a mirrored view. That's not what other people see wh
 Espeyu shows you the true view instead, the one other people see. You can still switch to the
 mirrored view any time.
 
-It shows the true view by default, and has freeze-frame, zoom, a brightness control, and an
+It shows the true view by default and has freeze-frame, zoom, a brightness control, and an
 on-screen ring light.
 
 Espeyu takes no photos, records no video, writes nothing to disk beyond your own
