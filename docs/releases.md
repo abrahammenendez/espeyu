@@ -34,7 +34,7 @@ is what Play shows for the next upload, up to 500 characters. Update it in the
 pull request that changes something a user would notice.
 
 [`listings/en-US/`](../app/src/main/play/listings/en-US) holds the title, the
-descriptions and the graphics, and every release publishes them, so an edit made
+descriptions, and the graphics, and every release publishes them, so an edit made
 in the Play Console is overwritten by the next merge. Play takes an icon of
 512x512, a feature graphic of 1024x500, and screenshots between 320 and 3840 px
 a side whose long side is at most twice the short one.
