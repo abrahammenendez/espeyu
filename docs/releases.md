@@ -29,15 +29,23 @@ takes the newest on alpha, which is what the testers ran.
 
 ## Release notes and store listing
 
-[`release-notes/en-GB/default.txt`](../app/src/main/play/release-notes/en-GB/default.txt)
+[`release-notes/en-US/default.txt`](../app/src/main/play/release-notes/en-US/default.txt)
 is what Play shows for the next upload, up to 500 characters. Update it in the
 pull request that changes something a user would notice.
 
-[`listings/en-GB/`](../app/src/main/play/listings/en-GB) holds the title, the
+[`listings/en-US/`](../app/src/main/play/listings/en-US) holds the title, the
 descriptions and the graphics, and every release publishes them, so an edit made
 in the Play Console is overwritten by the next merge. Play takes an icon of
 512x512, a feature graphic of 1024x500, and screenshots between 320 and 3840 px
 a side whose long side is at most twice the short one.
+
+English is the default language, so it is the listing anyone without a
+translation sees. `listings/es-ES/` translates the text, `es-419` links to it so
+Latin America gets the same, and both show the English graphics. Release notes
+stay English only.
+
+The default language and the contact details sit together in `play/`, because
+Play replaces them as one: a detail missing from the repository is blanked.
 
 ## One-time setup
 
