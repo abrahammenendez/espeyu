@@ -5,7 +5,7 @@
 [![Release](https://github.com/abrahammenendez/espeyu/actions/workflows/release.yaml/badge.svg)](https://github.com/abrahammenendez/espeyu/actions/workflows/release.yaml)
 [![REUSE status](https://api.reuse.software/badge/github.com/abrahammenendez/espeyu)](https://api.reuse.software/info/github.com/abrahammenendez/espeyu)
 
-Your phone's front camera shows you flipped, like a mirror. Nobody else sees you that way. Espeyu
+Your phone's front camera shows you flipped, like a mirror. Nobody sees you that way. Espeyu
 lets you see yourself as others do, and the mirrored view is still there when you want it.
 
 Espeyu opens in the true view and also has freeze-frame, zoom, brightness control, and an

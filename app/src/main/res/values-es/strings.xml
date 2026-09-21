@@ -19,7 +19,7 @@
     <string name="slider_brightness">Brillo de la pantalla</string>
     <string name="slider_warmth">Calidez del aro de luz</string>
 
-    <string name="about_summary">Un espejo moderno y rápido para tu móvil, que prioriza tu privacidad. Gratis, de código abierto y sin anuncios.</string>
+    <string name="about_summary">Un espejo moderno, rápido y privado para tu móvil. Gratis, de código abierto y sin anuncios.</string>
     <string name="about_version">Versión: %1$s</string>
     <string name="about_author">Autor: Abraham Menéndez</string>
     <string name="about_license">Licencias: AGPL-3.0-or-later, con AndroidX, Kotlin y Material Symbols bajo Apache-2.0, e Inter y Buenard bajo OFL-1.1.</string>
