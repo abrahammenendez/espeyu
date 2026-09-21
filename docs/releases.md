@@ -12,11 +12,11 @@ the release. Everything past the internal track is a deliberate step.
 
 The `Release` workflow runs `Verify`, then semantic-release, then the publish
 job. semantic-release reads the squash-merged pull request titles, works out the
-version, tags it and publishes the GitHub release. The publish job signs the
+version, tags it, and publishes the GitHub release. The publish job signs the
 bundle with the upload key and runs `publishReleaseApps`, which uploads the
 bundle and the store listing to the internal track.
 
-`feat` makes a minor release and `fix`, `revert` and `chore` a patch, so every
+`feat` makes a minor release and `fix`, `revert`, and `chore` a patch, so every
 merge reaches the internal track. Nobody but the internal testers sees it until
 someone promotes it.
 
@@ -29,15 +29,24 @@ takes the newest on alpha, which is what the testers ran.
 
 ## Release notes and store listing
 
-[`release-notes/en-GB/default.txt`](../app/src/main/play/release-notes/en-GB/default.txt)
+[`release-notes/en-US/default.txt`](../app/src/main/play/release-notes/en-US/default.txt)
 is what Play shows for the next upload, up to 500 characters. Update it in the
 pull request that changes something a user would notice.
 
-[`listings/en-GB/`](../app/src/main/play/listings/en-GB) holds the title, the
-descriptions and the graphics, and every release publishes them, so an edit made
+[`listings/en-US/`](../app/src/main/play/listings/en-US) holds the title, the
+descriptions, and the graphics, and every release publishes them, so an edit made
 in the Play Console is overwritten by the next merge. Play takes an icon of
 512x512, a feature graphic of 1024x500, and screenshots between 320 and 3840 px
 a side whose long side is at most twice the short one.
+
+English is the default language, so it is the listing anyone without a
+translation sees. `listings/es-ES/` and `listings/es-419/` hold the Spanish text
+for Spain and Latin America, which differ only in a few words, and both show the
+English graphics. Play documents no fallback from one to the other, so a change
+to one goes into both. Release notes stay English only.
+
+The default language and the contact details sit together in `play/`, because
+Play replaces them as one: a detail missing from the repository is blanked.
 
 ## One-time setup
 

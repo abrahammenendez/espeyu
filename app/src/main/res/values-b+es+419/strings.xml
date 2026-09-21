@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  SPDX-FileCopyrightText: 2026 Abraham Menéndez
+  SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+<!-- Only the wording Latin America says differently. Everything else comes from values-es. -->
+<resources>
+    <string name="about_summary">Un espejo moderno, rápido y privado para tu teléfono. Gratis, de código abierto y sin anuncios.</string>
+    <string name="permission_denied">Espeyu no puede funcionar sin acceso a la cámara. Puedes permitirlo en la configuración del sistema.</string>
+    <string name="permission_open_settings">Abrir configuración</string>
+</resources>

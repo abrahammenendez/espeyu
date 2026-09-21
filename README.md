@@ -5,15 +5,14 @@
 [![Release](https://github.com/abrahammenendez/espeyu/actions/workflows/release.yaml/badge.svg)](https://github.com/abrahammenendez/espeyu/actions/workflows/release.yaml)
 [![REUSE status](https://api.reuse.software/badge/github.com/abrahammenendez/espeyu)](https://api.reuse.software/info/github.com/abrahammenendez/espeyu)
 
-Your front camera shows you a mirrored view. That's not what other people see when they look at you.
-Espeyu shows you the true view instead, the one other people see. You can still switch to the
-mirrored view any time.
+Your phone's front camera shows you flipped, like a mirror. Nobody sees you that way. Espeyu
+lets you see yourself as others do, and the mirrored view is still there when you want it.
 
-In addition to true view by default, it also has freeze, zoom, screen brightness and an on-screen
-ring light.
+Espeyu opens in the true view and also has freeze-frame, zoom, brightness control, and an
+on-screen ring light.
 
-Espeyu takes no photos, records no video, writes nothing to disk beyond your own
-preferences, and has no `INTERNET` permission. It's free, open source and
+It takes no photos, records no video, writes nothing to disk beyond your own
+preferences, and has no `INTERNET` permission. It's free, open source, and
 distributed through Google Play, with no ads and no in-app purchases.
 
 ## Getting started
@@ -39,7 +38,7 @@ and the Gradle and dependency versions in
 
 ## How it works
 
-One activity, one screen, no dependency injection and no navigation library.
+One activity, one screen, no dependency injection, and no navigation library.
 State lives in `MirrorViewModel` as a single immutable `MirrorUiState`; the
 persisted slice of it round-trips through DataStore.
 
@@ -69,7 +68,7 @@ artifact's API, and it cannot read the displayed frame back.
 ### The controls
 
 One floating toolbar, matched by hand to `FloatingToolbarTokens` in Material 3
-1.4.0: 64dp tall, 8dp of padding, 4dp between buttons and 16dp off the screen
+1.4.0: 64dp tall, 8dp of padding, 4dp between buttons, and 16dp off the screen
 edge. `HorizontalFloatingToolbar` is the component for this, and it is not
 usable here, since it lands in material3 1.5.0-alpha and is still opt-in
 experimental, while the tokens it would apply ship in the stable release. The
@@ -141,7 +140,7 @@ and through it `media3-common`, which declares `ACCESS_NETWORK_STATE`. The
 manifest removes it.
 
 Nothing else is written to disk. There is no analytics, no crash reporting, no
-Play Services and no network code, and without `INTERNET` there could not be.
+Play Services, and no network code. Without `INTERNET` there could not be.
 
 The privacy policy itself is [`PRIVACY.md`](PRIVACY.md).
 

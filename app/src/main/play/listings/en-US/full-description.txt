@@ -1,0 +1,19 @@
+A full-screen mirror that shows the true view by default, with freeze-frame, zoom, brightness control, and an on-screen ring light.
+
+Your phone's front camera shows you flipped, like a mirror. Nobody sees you that way. Espeyu lets you see yourself as others do, and the mirrored view is still there when you want it.
+
+Features:
+
+* Use the front or back camera, full screen.
+* Switch between the true view and the mirrored view.
+* Freeze the picture to look at it closely without holding still.
+* Pinch to zoom.
+* Set the screen brightness without changing your phone's setting.
+* Light your face with a ring light around the edge of the screen, from daylight to warm.
+* Use it upright or sideways.
+
+Espeyu only asks for camera access. It has no way to connect to the internet, so nothing you do in it ever leaves your phone.
+
+No photos, no video, no accounts, no ads, no in-app purchases, no analytics.
+
+Free and open source: https://github.com/abrahammenendez/espeyu
