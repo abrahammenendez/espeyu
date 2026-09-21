@@ -16,7 +16,7 @@ the architecture and the reasoning behind it; do not duplicate that here.
 ./gradlew bundleRelease     # the bundle Play receives: R8, resource shrinking, lintVital
 ```
 
-Run `spotlessApply`, `lint` and `test` before calling a change done. CI runs
+Run `spotlessApply`, `lint`, and `test` before calling a change done. CI runs
 `spotlessCheck`, `lint`, `test`, `bundleRelease`, and `reuse lint` in a
 separate job.
 
@@ -103,9 +103,11 @@ separate job.
 ## Writing style
 
 The repo is a work sample, so anything that reads as machine-generated is a
-defect. These rules apply to code, comments, tests, docs and commit messages.
+defect. These rules apply to code, comments, tests, docs, and commit messages.
 
 - **No em dashes.** Use a comma, a colon, or two sentences.
+- **Use the serial comma** in English lists: "red, white, and blue". Spanish
+  never takes one before "y".
 - Comments explain **why**, never what. If the code already says it, delete the
   comment rather than rewording it.
 - State a fact in one place only and cross-reference it.
@@ -114,7 +116,7 @@ defect. These rules apply to code, comments, tests, docs and commit messages.
 - Test names state behaviour plainly, with no "since ..." or "so that ..."
   justification clauses.
 - **Never invent specifics in documentation.** Verify every number, path, file
-  name and API name against the code before writing it down.
+  name, and API name against the code before writing it down.
 
 ## Commits
 

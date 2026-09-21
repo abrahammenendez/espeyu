@@ -1,5 +1,5 @@
 name: Set up Android
-description: Installs the JDK, SDK and Gradle that every job building this app needs.
+description: Installs the JDK, SDK, and Gradle that every job building this app needs.
 runs:
   using: composite
   steps:
