@@ -4,7 +4,7 @@
   SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 <resources>
-    <string name="app_name">Espeyu</string>
+    <string name="app_name" translatable="false">Espeyu</string>
 
     <string name="action_show_true_view">Show true view</string>
     <string name="action_show_mirrored_view">Show mirrored view</string>

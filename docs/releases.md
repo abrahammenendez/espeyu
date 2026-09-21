@@ -40,9 +40,10 @@ in the Play Console is overwritten by the next merge. Play takes an icon of
 a side whose long side is at most twice the short one.
 
 English is the default language, so it is the listing anyone without a
-translation sees. `listings/es-ES/` translates the text, `es-419` links to it so
-Latin America gets the same, and both show the English graphics. Release notes
-stay English only.
+translation sees. `listings/es-ES/` and `listings/es-419/` hold the Spanish text
+for Spain and Latin America, which differ only in a few words, and both show the
+English graphics. Play documents no fallback from one to the other, so a change
+to one goes into both. Release notes stay English only.
 
 The default language and the contact details sit together in `play/`, because
 Play replaces them as one: a detail missing from the repository is blanked.

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  SPDX-FileCopyrightText: 2026 Abraham Menéndez
+  SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+<resources>
+    <string name="action_show_true_view">Mostrar la vista real</string>
+    <string name="action_show_mirrored_view">Mostrar la vista en espejo</string>
+    <string name="action_switch_lens">Cambiar de cámara</string>
+    <string name="action_freeze">Congelar la imagen</string>
+    <string name="action_unfreeze">Descongelar la imagen</string>
+    <string name="action_turn_brightness_on">Controlar el brillo de la pantalla</string>
+    <string name="action_turn_brightness_off">Restaurar el brillo del sistema</string>
+    <string name="action_turn_ring_light_on">Encender el aro de luz</string>
+    <string name="action_turn_ring_light_off">Apagar el aro de luz</string>
+
+    <string name="action_about">Acerca de Espeyu</string>
+
+    <string name="slider_brightness">Brillo de la pantalla</string>
+    <string name="slider_warmth">Calidez del aro de luz</string>
+
+    <string name="about_summary">Un espejo moderno y rápido para tu móvil, que prioriza tu privacidad. Gratis, de código abierto y sin anuncios.</string>
+    <string name="about_version">Versión: %1$s</string>
+    <string name="about_author">Autor: Abraham Menéndez</string>
+    <string name="about_license">Licencias: AGPL-3.0-or-later, con AndroidX, Kotlin y Material Symbols bajo Apache-2.0, e Inter y Buenard bajo OFL-1.1.</string>
+    <string name="about_source">Código fuente/Incidencias:</string>
+    <string name="about_privacy_policy">Política de privacidad:</string>
+    <string name="about_close">Cerrar</string>
+
+    <string name="permission_rationale">Espeyu necesita acceso a tu cámara. No se graba, se guarda ni se envía nada a ninguna parte.</string>
+    <string name="permission_grant">Dar acceso a la cámara</string>
+    <string name="permission_denied">Espeyu no puede funcionar sin acceso a la cámara. Puedes permitirlo en los ajustes del sistema.</string>
+    <string name="permission_open_settings">Abrir ajustes</string>
+</resources>

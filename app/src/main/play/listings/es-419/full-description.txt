@@ -5,15 +5,15 @@ La cámara frontal te muestra una vista en espejo. No es lo que ven los demás c
 Funciones:
 
 * Cámara a pantalla completa, frontal o trasera
-* Vista real y vista en espejo, con cambio en directo
+* Vista real y vista en espejo, con cambio en vivo
 * Congela la imagen para que tu pose se quede quieta. Al congelarla, la cámara se apaga
 * Pellizca para hacer zoom
-* Un control de brillo que no cambia el ajuste de tu móvil
+* Un control de brillo que no cambia el ajuste de tu teléfono
 * Un aro de luz en pantalla con control de calidez
 * En vertical y en horizontal
 
-Espeyu solo pide acceso a la cámara. No tiene forma de conectarse a internet, así que nada de lo que hagas en la app sale nunca de tu móvil.
+Espeyu solo pide acceso a la cámara. No tiene forma de conectarse a internet, así que nada de lo que hagas en la app sale nunca de tu teléfono.
 
-Sin fotos, sin vídeo, sin cuentas, sin anuncios, sin compras dentro de la app, sin analíticas.
+Sin fotos, sin video, sin cuentas, sin anuncios, sin compras dentro de la app, sin analíticas.
 
 Gratis y de código abierto: https://github.com/abrahammenendez/espeyu
