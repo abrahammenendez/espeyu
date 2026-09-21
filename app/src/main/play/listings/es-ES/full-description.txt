@@ -6,9 +6,9 @@ Funciones:
 
 * Usa la cámara frontal o la trasera, a pantalla completa.
 * Cambia entre la imagen real y la imagen invertida.
-* Congela la imagen para mirarla con calma, sin tener que quedarte quiet@.
+* Congela la imagen para mirarla con calma, sin tener que aguantar la postura.
 * Pellizca para hacer zoom.
-* Ajusta el brillo de la pantalla sin cambiar el de tu móvil.
+* Ajusta el brillo de la pantalla sin cambiar el ajuste de tu móvil.
 * Ilumínate la cara con un aro de luz en el borde de la pantalla, de luz de día a luz cálida.
 * Úsalo en vertical o en horizontal.
 
