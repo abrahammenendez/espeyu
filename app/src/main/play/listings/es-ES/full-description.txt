@@ -1,4 +1,4 @@
-Un espejo a pantalla completa que muestra la vista real por defecto, con congelación de imagen, zoom, brillo de pantalla y un aro de luz en la propia pantalla.
+Un espejo a pantalla completa que muestra la vista real por defecto, con congelación de imagen, zoom, un control de brillo y un aro de luz en pantalla.
 
 La cámara frontal te muestra una vista en espejo. No es lo que ven los demás cuando te miran. Espeyu te muestra la vista real, la que ven los demás. Aun así, puedes cambiar a la vista en espejo cuando quieras.
 

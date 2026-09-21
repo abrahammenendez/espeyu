@@ -1,4 +1,4 @@
-A full-screen mirror with a true view by default, freeze, zoom, screen brightness and an on-screen ring light.
+A full-screen mirror that shows the true view by default, with freeze-frame, zoom, a brightness control and an on-screen ring light.
 
 Your front camera shows you a mirrored view. That's not what other people see when they look at you. Espeyu shows you the true view instead, the one other people see. You can still switch to the mirrored view any time.
 
