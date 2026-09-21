@@ -1,6 +1,6 @@
 A full-screen mirror that shows the true view by default, with freeze-frame, zoom, brightness control, and an on-screen ring light.
 
-Every phone's front camera shows you a mirrored image, which is not how other people see you. Espeyu shows you the true view instead, and you can switch back to the mirrored one at any time.
+Your phone's front camera shows you flipped, like a mirror. Nobody else sees you that way. Espeyu lets you see yourself as others do, and the mirrored view is still there when you want it.
 
 Features:
 

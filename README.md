@@ -5,13 +5,13 @@
 [![Release](https://github.com/abrahammenendez/espeyu/actions/workflows/release.yaml/badge.svg)](https://github.com/abrahammenendez/espeyu/actions/workflows/release.yaml)
 [![REUSE status](https://api.reuse.software/badge/github.com/abrahammenendez/espeyu)](https://api.reuse.software/info/github.com/abrahammenendez/espeyu)
 
-Every phone's front camera shows you a mirrored image, which is not how other people see you.
-Espeyu shows you the true view instead, and you can switch back to the mirrored one at any time.
+Your phone's front camera shows you flipped, like a mirror. Nobody else sees you that way. Espeyu
+lets you see yourself as others do, and the mirrored view is still there when you want it.
 
-It shows the true view by default and has freeze-frame, zoom, brightness control, and an
+Espeyu opens in the true view and also has freeze-frame, zoom, brightness control, and an
 on-screen ring light.
 
-Espeyu takes no photos, records no video, writes nothing to disk beyond your own
+It takes no photos, records no video, writes nothing to disk beyond your own
 preferences, and has no `INTERNET` permission. It's free, open source, and
 distributed through Google Play, with no ads and no in-app purchases.
 
