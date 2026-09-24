@@ -19,7 +19,7 @@ junit = "4.13.2"
 kotlin = "2.4.20"
 ktfmt = "0.64"
 play-publisher = "4.1.1"
-roborazzi = "1.74.0"
+roborazzi = "1.75.0"
 robolectric = "4.16.1"
 spotless = "8.10.2"
 
