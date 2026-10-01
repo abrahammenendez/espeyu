@@ -21,7 +21,7 @@ ktfmt = "0.64"
 play-publisher = "4.1.1"
 roborazzi = "1.74.0"
 robolectric = "4.16.1"
-spotless = "8.10.2"
+spotless = "8.10.3"
 
 [libraries]
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activity" }
