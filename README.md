@@ -13,7 +13,9 @@ on-screen ring light.
 
 It takes no photos, records no video, writes nothing to disk beyond your own
 preferences, and has no `INTERNET` permission. It's free, open source, and
-distributed through Google Play, with no ads and no in-app purchases.
+distributed through
+[Google Play](https://play.google.com/store/apps/details?id=com.abrahammenendez.espeyu),
+with no ads and no in-app purchases.
 
 ## Getting started
 
