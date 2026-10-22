@@ -8,7 +8,7 @@ import android.view.WindowManager
 import androidx.activity.compose.LocalActivity
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
-import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.SideEffect
 import com.abrahammenendez.espeyu.data.ScreenBrightness
 
 /**
@@ -25,7 +25,7 @@ fun ScreenBrightnessEffect(brightness: ScreenBrightness) {
             WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_NONE
         }
 
-    LaunchedEffect(window, target) { window.setScreenBrightness(target) }
+    SideEffect(window, target) { window.setScreenBrightness(target) }
 
     DisposableEffect(window) {
         onDispose {

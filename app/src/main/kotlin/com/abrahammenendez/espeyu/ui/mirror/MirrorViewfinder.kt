@@ -13,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -42,20 +43,32 @@ data class LensAvailability(val hasFront: Boolean = true, val hasBack: Boolean =
  * on screen, already rotated and mirrored by the preview itself.
  */
 @Stable
-class ViewfinderState {
-    internal var previewView by mutableStateOf<PreviewView?>(null)
-
+class ViewfinderState internal constructor(internal val previewView: PreviewView) {
     var isStreaming by mutableStateOf(false)
         internal set
 
     fun captureFrame(): ImageBitmap? {
         if (!isStreaming) return null
-        val bitmap = previewView?.bitmap ?: return null
+        val bitmap = previewView.bitmap ?: return null
         return if (bitmap.width == 0 || bitmap.height == 0) null else bitmap.asImageBitmap()
     }
 }
 
-@Composable fun rememberViewfinderState(): ViewfinderState = remember { ViewfinderState() }
+@Composable
+fun rememberViewfinderState(): ViewfinderState {
+    val context = LocalContext.current
+    return remember {
+        ViewfinderState(
+            PreviewView(context).also { view ->
+                // PERFORMANCE is documented as not for a view that needs to be animated, and
+                // as reaching STREAMING prematurely. This view is transformed, and captureFrame
+                // reads it back the moment STREAMING arrives.
+                view.implementationMode = PreviewView.ImplementationMode.COMPATIBLE
+                view.scaleType = PreviewView.ScaleType.FILL_CENTER
+            }
+        )
+    }
+}
 
 /**
  * PreviewView mirrors the front camera and leaves the back camera alone, so the viewfinder only
@@ -86,30 +99,17 @@ fun MirrorViewfinder(
     val previewView = state.previewView
     var camera by remember { mutableStateOf<Camera?>(null) }
 
-    AndroidView(
-        factory = { viewContext ->
-            PreviewView(viewContext).also { view ->
-                // PERFORMANCE is documented as not for a view that needs to be animated, and
-                // as reaching STREAMING prematurely. This view is transformed, and captureFrame
-                // reads it back the moment STREAMING arrives.
-                view.implementationMode = PreviewView.ImplementationMode.COMPATIBLE
-                view.scaleType = PreviewView.ScaleType.FILL_CENTER
-                state.previewView = view
-            }
-        },
-        modifier = modifier,
-        onRelease = { state.previewView = null },
-    )
+    AndroidView(factory = { previewView }, modifier = modifier)
 
     LaunchedEffect(previewView, lens, isActive) {
-        val view = previewView ?: return@LaunchedEffect
         val provider = ProcessCameraProvider.awaitInstance(context)
         val availability = provider.lensAvailability()
         onLensAvailabilityChange(availability)
         provider.unbindAll()
         if (!isActive || lens !in availability) return@LaunchedEffect
 
-        val preview = Preview.Builder().build().also { it.surfaceProvider = view.surfaceProvider }
+        val preview =
+            Preview.Builder().build().also { it.surfaceProvider = previewView.surfaceProvider }
         camera = provider.bindToLifecycle(lifecycleOwner, lens.selector, preview)
         try {
             awaitCancellation()
@@ -120,14 +120,14 @@ fun MirrorViewfinder(
     }
 
     DisposableEffect(previewView) {
-        val streamState = previewView?.previewStreamState
+        val streamState = previewView.previewStreamState
         val observer =
             Observer<PreviewView.StreamState> {
                 state.isStreaming = it == PreviewView.StreamState.STREAMING
             }
-        streamState?.observeForever(observer)
+        streamState.observeForever(observer)
         onDispose {
-            streamState?.removeObserver(observer)
+            streamState.removeObserver(observer)
             state.isStreaming = false
         }
     }
@@ -142,7 +142,7 @@ fun MirrorViewfinder(
         onDispose { zoomState?.removeObserver(observer) }
     }
 
-    LaunchedEffect(camera, zoomRatio) { camera?.cameraControl?.setZoomRatio(zoomRatio) }
+    SideEffect(camera, zoomRatio) { camera?.cameraControl?.setZoomRatio(zoomRatio) }
 }
 
 private val Lens.selector: CameraSelector

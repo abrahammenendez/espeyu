@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
     inputs:
       track:
-        description: 'Track to promote the newest internal build to'
+        description: 'Track to promote to: alpha takes the newest internal build, production the newest alpha one'
         required: true
         type: choice
         options:
