@@ -5,6 +5,7 @@
 -->
 <!-- Only the wording Latin America says differently. Everything else comes from values-es. -->
 <resources>
+    <string name="about_summary">Un espejo real a pantalla completa, moderno y privado. Gratis, sin anuncios y de código abierto.</string>
     <string name="permission_denied">Espeyu no puede funcionar sin acceso a la cámara. Puedes permitirlo en la configuración del sistema.</string>
     <string name="permission_open_settings">Abrir configuración</string>
 </resources>
