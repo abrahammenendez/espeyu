@@ -21,7 +21,7 @@
     <string name="slider_brightness">Screen brightness</string>
     <string name="slider_warmth">Ring light warmth</string>
 
-    <string name="about_summary">A modern, privacy-first, full-screen true mirror for your phone. Free, no ads, open source.</string>
+    <string name="about_summary">A modern, privacy-first, full-screen true mirror. Free, no ads, open source.</string>
     <string name="about_version">Version: %1$s</string>
     <string name="about_author">Author: Abraham Menéndez</string>
     <string name="about_license">Licenses: AGPL-3.0-or-later, with AndroidX, Kotlin, and Material Symbols under Apache-2.0, and Inter and Buenard under OFL-1.1.</string>
