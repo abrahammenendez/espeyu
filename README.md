@@ -1,6 +1,8 @@
 # espeyu
 
-:bulb: A modern, privacy-first, fast mirror for your phone. Free, open-source, no ads.
+:mirror: A modern, privacy-first, full-screen true mirror for your phone. Free, no ads, open source.
+
+<a href="https://play.google.com/store/apps/details?id=com.abrahammenendez.espeyu"><img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" height="80"></a>
 
 [![Release](https://github.com/abrahammenendez/espeyu/actions/workflows/release.yaml/badge.svg)](https://github.com/abrahammenendez/espeyu/actions/workflows/release.yaml)
 [![REUSE status](https://api.reuse.software/badge/github.com/abrahammenendez/espeyu)](https://api.reuse.software/info/github.com/abrahammenendez/espeyu)
@@ -12,10 +14,8 @@ Espeyu opens in the true view and also has freeze-frame, zoom, brightness contro
 on-screen ring light.
 
 It takes no photos, records no video, writes nothing to disk beyond your own
-preferences, and has no `INTERNET` permission. It's free, open source, and
-distributed through
-[Google Play](https://play.google.com/store/apps/details?id=com.abrahammenendez.espeyu),
-with no ads and no in-app purchases.
+preferences, and has no `INTERNET` permission. It's free, open source, and has
+no ads and no in-app purchases.
 
 ## Getting started
 
