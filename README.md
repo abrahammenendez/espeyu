@@ -1,6 +1,6 @@
 # espeyu
 
-:mirror: A modern, privacy-first, full-screen true mirror for your phone. Free, open-source, no ads.
+:mirror: A modern, privacy-first, full-screen true mirror for your phone. Free, no ads, open-source.
 
 <a href="https://play.google.com/store/apps/details?id=com.abrahammenendez.espeyu"><img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" height="80"></a>
 
