@@ -41,9 +41,10 @@ a side whose long side is at most twice the short one.
 
 English is the default language, so it is the listing anyone without a
 translation sees. `listings/es-ES/` and `listings/es-419/` hold the Spanish text
-for Spain and Latin America, which differ only in a few words, and both show the
-English graphics. Play documents no fallback from one to the other, so a change
-to one goes into both. Release notes stay English only.
+for Spain and Latin America, which differ only in a few words, and the same phone
+screenshots with Spanish titles. Neither has its own icon or feature graphic, so
+Play shows the English ones. Play documents no fallback from one Spanish listing
+to the other, so a change to one goes into both. Release notes stay English only.
 
 The default language and the contact details sit together in `play/`, because
 Play replaces them as one: a detail missing from the repository is blanked.
