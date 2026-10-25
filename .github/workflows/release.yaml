@@ -79,8 +79,10 @@ jobs:
         env:
           KEYSTORE: ${{ secrets.GOOGLE_UPLOAD_KEYSTORE }}
       # Named by variant: the baseline profile plugin adds two the store must never see.
+      # One worker, because Play answers screenshots for several listings uploaded to one
+      # edit at the same time with a 500.
       - name: Publish the bundle and the listing
-        run: ./gradlew publishReleaseApps -PreleaseVersion="$RELEASE_VERSION"
+        run: ./gradlew publishReleaseApps --max-workers=1 -PreleaseVersion="$RELEASE_VERSION"
         env:
           RELEASE_VERSION: ${{ needs.release.outputs.new-release-version }}
           GOOGLE_UPLOAD_KEYSTORE_PASSWORD: ${{ secrets.GOOGLE_UPLOAD_KEYSTORE_PASSWORD }}
